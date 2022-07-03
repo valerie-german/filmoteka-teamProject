@@ -1,7 +1,7 @@
 // Здесь будут настройки хедеров Home и My-library
 
 // -----------------------MY-LIBRARY-PAGE----------------------
-.header-lib {
+.header {
   position: absolute;
 
   padding-top: 40px;
@@ -45,11 +45,11 @@
 }
 
 .logo__label {
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 768px) {
     margin-left: 10px;
     font-family: 'Roboto';
     font-style: normal;
@@ -63,7 +63,7 @@
   }
 }
 
-.header-lib-nav {
+.header-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -71,16 +71,13 @@
   @media screen and (min-width: 319px) {
     justify-content: center;
   }
-  @media screen and (min-width: 400px) and (max-width: 767px) {
-    justify-content: space-between;
-  }
 }
 
-.header-lib-nav__list {
+.header-nav__list {
   display: flex;
 }
 
-.header-lib-nav__item {
+.header-nav__item {
   &:not(:last-child) {
     @media screen and (min-width: 279px) {
       margin-right: 20px;
@@ -92,18 +89,26 @@
   }
 }
 
-.header-lib-nav__link {
+.header-nav__link {
   color: var(--hero-text-color);
   font-size: 12px;
   line-height: 1.16;
 
   text-transform: uppercase;
+
   & {
     padding-bottom: 3px;
   }
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:focus,
+  &:hover {
+    color: var(--hero-current-link-color);
+  }
 }
 
-.header-lib-nav__link--current {
+.header-nav__link--current {
   position: relative;
 
   &::after {
@@ -137,7 +142,7 @@
     background-image: url(../images/my-library-bg/my-library-img-320-2x.png);
   }
 
-  @media screen and (min-width: 479px) {
+  @media screen and (min-width: 768px) {
     background-image: url(../images/my-library-bg/my-library-img-768.png);
 
     @media (min-device-pixel-ratio: 2),
