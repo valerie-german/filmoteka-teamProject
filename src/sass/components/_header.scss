@@ -13,29 +13,12 @@
   right: 0;
   background-color: transparent;
   z-index: 1;
-
-  //   @media screen and (min-width: 500px) {
-  //     padding-left: 32px;
-  //     padding-right: 32px;
-  //   }
 }
 
 .logo {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 80px;
-  @media screen and (min-width: 319px) {
-    margin-right: 112px;
-  }
-
-  @media screen and (min-width: 767px) {
-    margin-right: 385px;
-  }
-
-  @media screen and (min-width: 1279px) {
-    margin-right: 900px;
-  }
 }
 
 .logo__icon {
@@ -67,14 +50,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  @media screen and (min-width: 319px) {
-    justify-content: center;
-  }
 }
 
 .header-nav__list {
   display: flex;
+  margin-left: auto;
 }
 
 .header-nav__item {
