@@ -1,5 +1,32 @@
-<header class="header">
-  <div class="container">
-    <!-- верстка  -->
-  </div>
+<header class="header container">
+    <nav class="header-nav">
+      <a href="./index.html" class="logo no-link">
+        <img class="logo__icon" src="./images/film-icon.svg" alt="Icon logo" />
+        <span class="logo__label">Filmoteka</span>
+      </a>
+      <ul class="header-nav__list list">
+        <li class="header-nav__item">
+          <a href="./index.html" class="header-nav__link header-nav__link--current no-link">Home</a>
+        </li>
+        <li class="header-nav__item">
+          <a href="./my-library.html" class="header-nav__link no-link">My library</a>
+        </li>
+      </ul>
+    </nav>
 </header>
+
+<section class="hero-home container">
+  <div class="hero-home__container">
+    <form class="hero-home_form" name="search">
+      <input class="form_input" type="text" name="searchQuery" autocomplete="off" placeholder="Movie search">
+      <button class="form_search-button" type="submit">
+        <svg class="form_search-icon" width="12" height="12">
+        <use href="./images/symbol-defs.svg#icon-search"></use>
+      </svg>
+      </button>
+    </form>
+    <p class="notification">
+      Search result not successful. Enter the correct movie name and try again
+    </p>
+  </div>
+</section>
