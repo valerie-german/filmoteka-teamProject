@@ -1,0 +1,124 @@
+li {
+  list-style-type: none;
+}
+
+.gallery {
+  padding-top: 20px;
+  padding-bottom: 40px;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+.gallery-home-list {
+  max-width: 280px;
+  // margin-left: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  @media screen and (min-width: 768px) {
+    max-width: none;
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-left: -32px;
+    margin-top: -32px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-left: -16px;
+    margin-top: -16px;
+  }
+}
+
+.gallery-item {
+  margin-bottom: 20px;
+  width: 280px;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 32px;
+    margin-top: 32px;
+    flex-basis: calc(100% / 2 - 32px);
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-left: 16px;
+    margin-top: 16px;
+    flex-basis: calc(100% / 3 - 16px);
+    margin-bottom: 24px;
+  }
+}
+
+.film-card {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.film-cardimage {
+  margin-bottom: 10px;
+}
+
+.cardname {
+  color: var(--primary-text-color);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+
+  @media screen and (min-width: 1280px) {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.17;
+  }
+}
+
+.cardgenre {
+  display: flex;
+  align-items: baseline;
+  border-right: 1 px solid #ff6b08;
+}
+
+.cardtext {
+  display: flex;
+  justify-content: baseline;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: var(--secondary-color-title-card);
+
+  @media screen and (min-width: 1280px) {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}
+
+.cardgenre {
+  color: var(--secondary-color-title-card);
+  margin-right: 4px;
+  padding-right: 4px;
+  border-right: 1px solid #ff6b08;
+}
+
+.cardrate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 36px;
+  height: 16px;
+  border-radius: 5px;
+  color: var(--hero-text-color);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  margin-left: 8px;
+  background-color: var(--bg-rating);
+
+  @media screen and (min-width: 1280px) {
+    width: 40px;
+    height: 20px;
+  }
+}
