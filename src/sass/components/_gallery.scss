@@ -32,7 +32,7 @@ li {
   }
   @media screen and (min-width: 1280px) {
     margin-left: -16px;
-    margin-top: -16px;
+    margin-top: -32px;
   }
 }
 
@@ -53,7 +53,7 @@ li {
 
   @media screen and (min-width: 1280px) {
     margin-left: -16px;
-    margin-top: -16px;
+    margin-top: -32px;
   }
 }
 
@@ -62,16 +62,19 @@ li {
   width: 280px;
 
   @media screen and (min-width: 768px) {
+    margin-bottom: 0;
+    max-height: 495px;
     margin-left: 32px;
     margin-top: 32px;
     flex-basis: calc(100% / 2 - 32px);
   }
 
   @media screen and (min-width: 1280px) {
+    max-height: none;
     margin-left: 16px;
-    margin-top: 16px;
+    margin-top: 32px;
     flex-basis: calc(100% / 3 - 16px);
-    margin-bottom: 24px;
+    margin-bottom: 0;
   }
 }
 
@@ -80,14 +83,14 @@ li {
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 
   transition: 250ms linear;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {
-      transform: scale(1.05);
+    transform: scale(1.05);
   }
 }
 
@@ -100,15 +103,15 @@ li {
   &:hover,
   &:focus {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-        1px 4px 6px rgba(0, 0, 0, 0.16);
-    }
+      1px 4px 6px rgba(0, 0, 0, 0.16);
+  }
 
   @media screen and (min-width: 768px) {
-      height: 455px;
-    }
-  @media screen and (min-width: 768px) {
-      height: 574px;      
-    }
+    height: 455px;
+  }
+  @media screen and (min-width: 1280px) {
+    height: 574px;
+  }
 }
 
 .card__name {
@@ -116,6 +119,8 @@ li {
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
+
+  text-transform: uppercase;
 
   @media screen and (min-width: 1280px) {
     font-weight: 500;
