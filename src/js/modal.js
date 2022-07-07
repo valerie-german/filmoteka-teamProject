@@ -51,8 +51,11 @@ function closeModalGallery() {
     document.body.style.overflow = "";  
 }
 
-function onEscKeyPress() {
-    closeModal();
+function onEscKeyPress(event) {
+    if (event.code === 'Escape') {
+         closeModal();
     closeModalGallery();
+    }
+   
      
 }
