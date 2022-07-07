@@ -83,6 +83,7 @@ li {
   justify-content: center;
   flex-direction: column;
   width: 100%;
+  
   // margin-bottom: 20px;
 
   transition: 250ms linear;
@@ -99,7 +100,8 @@ li {
   height: 402px;
   margin-bottom: 10px;
   border-radius: 5px;
-
+  object-fit: cover;
+ 
   &:hover,
   &:focus {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
