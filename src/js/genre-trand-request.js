@@ -4,6 +4,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export default class ApiRequest {
   constructor() {
+    this.query = '';
     this.page = 1;
     this.totalPages = 1;
   }
@@ -33,7 +34,7 @@ export default class ApiRequest {
     }
   }
 
-  async searchFilms(query, pageNumber) {
+  async searchFilms(pageNumber, query) {
     const responce = await axios.get(
       `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=${pageNumber}&include_adult=false&query="${query}"`
     );
