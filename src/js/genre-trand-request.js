@@ -5,6 +5,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 export default class ApiRequest {
   constructor() {
     this.page = 1;
+    this.totalPages = 1;
   }
 
   async getGenre() {
@@ -12,19 +13,20 @@ export default class ApiRequest {
       const responce = await axios.get(
         `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US&page=${this.page}`
       );
-      this.page += 1;
-      return responce.data;
+      // this.page += 1;
+      return responce.data.genres;
     } catch (error) {
       Notify.failure(error);
     }
   }
 
-  async getTranding() {
+  async getTranding(pageNumber) {
     try {
       const responce = await axios.get(
-        `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&page=${this.page}`
+        `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&page=${pageNumber}`
       );
-      this.page += 1;
+      // this.page += 1;
+      this.totalPages = await responce.data.total_pages;
       return responce.data.results;
     } catch (error) {
       Notify.failure(error);
