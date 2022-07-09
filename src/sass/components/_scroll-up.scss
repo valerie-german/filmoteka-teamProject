@@ -1,0 +1,27 @@
+html {
+    scroll-behavior: smooth;
+}
+
+#scrollTop {
+    position: fixed;
+    bottom: 100px;
+    right: 40px;
+    font-size: 30px;
+    z-index: 9999;
+    cursor: pointer;
+    color: var(--secondary-color-title-card);
+
+    @media screen and (min-width: 1280px) {
+        right: 70px;
+        font-size: 40px;
+    }
+}
+
+.isShowBtn {
+    opacity: 1;
+    transition: .4s
+}
+
+.isShowBtn-hidden {
+    opacity: 0;
+}
