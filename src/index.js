@@ -1,5 +1,6 @@
 import './js/modal';
 import './js/preloader';
+import './js/scroll-up';
 import { refs } from './js/refs';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import ApiRequest from './js/genre-trand-request';
@@ -19,3 +20,4 @@ function searchByTranding() {
     apiRequest.getTranding().then(responce => responce);
   }
 }
+
