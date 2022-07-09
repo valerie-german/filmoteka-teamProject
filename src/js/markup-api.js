@@ -29,11 +29,22 @@ export class MarkupApi {
         }) => {
           if (genre_ids) {
             let genresArray;
+            let uniqueGenres = [];
 
             genresArray = dataGenres
               .filter(genre => genre_ids.includes(genre.id))
               .map(genre => genre.name);
             let date = new Date(release_date);
+
+            if (genresArray.length > 0) {
+              uniqueGenres = genresArray.filter(
+                (genre, index, array) => array.indexOf(genre) === index).join(', ');
+            }
+            else { 
+              uniqueGenres = ["Movie"];
+            }
+               
+            
 
             let date2 = new Date(first_air_date);
             let year = date.getFullYear();
@@ -77,7 +88,7 @@ export class MarkupApi {
             <div class="card">
                 <p class="card__name">${title || name}</p>
                 <div class="card__text">
-                <p class="card__genre">${genresArray.splice(-3).join(', ')}</p>
+                <p class="card__genre">${uniqueGenres}</p>
                 <p class="card__year">${year || year2}</p>
                 <p class="card__rate">${vote}</p>
                 </div>
