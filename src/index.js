@@ -17,7 +17,7 @@ const currentLocation = window.location.pathname;
 window.addEventListener('DOMContentLoaded', searchByTranding);
 
 function searchByTranding() {
-  if (currentLocation === '/index.html') {
+  if (currentLocation === '/index.html' || currentLocation === '/') {
     defaultGalleyRender();
     searchFilms();
   }
