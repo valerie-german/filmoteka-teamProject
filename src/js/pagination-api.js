@@ -9,7 +9,7 @@ export class PaginApi {
     this.isLastForDisabled = false;
     this.numberToRender = 1;
     this.screenWidth = '';
-    this.isMobile = '';
+    this.query = '';
     this.refs = {};
     this._currentPage = 1;
     this.isFirstRender = true;
@@ -232,10 +232,125 @@ export class PaginApi {
     return array.join('');
   }
 
+  createPagiMarkup(totalPage) {
+    {
+      const array = [];
+      let lastPageBtn = totalPage;
+      array.push(`
+        <li class="pagination-btns__item">
+        <button class="pagination-btns__btn btn-pag-previ" data-action="previ">
+        <svg
+          class="svg svg-prev"
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class="path-prev"
+            d="M12.6666 8H3.33325"
+            stroke="black"
+            stroke-width="1.33333"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            class="path-prev"
+            d="M7.99992 12.6667L3.33325 8.00004L7.99992 3.33337"
+            stroke="black"
+            stroke-width="1.33333"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+      </li>
+        <li class="pagination-btns__item">
+          <button class="pagination-btns__btn first__btn btn-page">1</button>
+        </li>
+        <li class="pagination-btns__item">
+          <button class="pagination-btns__btn dots__btn" disabled="true">...</button>
+        </li>
+        `);
+      if (totalPage > 7) {
+        lastPageBtn = 6;
+      }
+      if (!this.isLastPage) {
+        for (let index = 0; index < lastPageBtn; index += 1) {
+          let currentP = this.numberToRender;
+          array.push(`<li class="pagination-btns__item">
+          <button class="pagination-btns__btn btn__static btn-page${
+            currentP + index
+          } btn-page-number${currentP + index}">${currentP + index}</button>
+        </li>`);
+        }
+      } else {
+        for (let index = 6; index > 0; index -= 1) {
+          let currentP = this.numberToRender;
+          array.push(`<li class="pagination-btns__item">
+          <button class="pagination-btns__btn btn__static btn-page${
+            currentP - index + 1
+          } btn-page-number${currentP - index + 1}">${
+            currentP - index + 1
+          }</button>
+        </li>`);
+        }
+      }
+      // this.firstAndNearFirsGroup(array);
+
+      // for (let index = 0; index < 6; index += 1) {
+      //   let currentP = this.numberToRender;
+      //   array.push(`<li class="pagination-btns__item">
+      //       <button class="pagination-btns__btn btn__static btn-page${
+      //         currentP + index
+      //       } btn-page-number${currentP + index}">${currentP + index}</button>
+      //     </li>`);
+      // }
+
+      array.push(`<li class="pagination-btns__item">
+          <button class="pagination-btns__btn dots__btn" disabled="true">...</button>
+        </li>
+        <li class="pagination-btns__item">
+          <button class="pagination-btns__btn last__btn btn-page${totalPage}">${totalPage}</button>
+        </li>
+        <li class="pagination-btns__item">
+        <button class="pagination-btns__btn btn-pag-next" data-action="next">
+        <svg
+          class="svg svg-next"
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class="path-next"
+            d="M12.6666 8H3.33325"
+            stroke="black"
+            stroke-width="1.33333"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            class="path-next"
+            d="M7.99992 12.6667L3.33325 8.00004L7.99992 3.33337"
+            stroke="black"
+            stroke-width="1.33333"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button></li>`);
+
+      return array.join('');
+    }
+  }
+
   append(totalPage) {
     refs.pagination.insertAdjacentHTML(
       'afterbegin',
-      this.createFirstPaginationMarkup(totalPage)
+      this.createPagiMarkup(totalPage)
     );
 
     this.getRefs();
