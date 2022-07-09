@@ -18,8 +18,7 @@ const markupApi = new MarkupApi();
 //   renderPagination(apiRequest.totalPages, refs.pagination);
 // }
 
-export async function defaultGalleyRender() {
-  markupApi.isMainPage = true;
+export async function second() {
   const data = await apiRequest.getTranding(apiRequest.page);
 
   markupApi.renderMarkUp(data);

@@ -8,12 +8,13 @@ const apiRequest = new ApiRequest();
 export class MarkupApi {
   constructor() {
     this.filmId = '';
+    this.isMainPage = false;
   }
 
   makeGalleryCardsMarkup(filmsData, dataGenres) {
     let result;
     let imageURL = 'https://image.tmdb.org/t/p/';
-
+    console.log(this.isMainPage);
     result = filmsData
       .map(
         ({
@@ -37,14 +38,12 @@ export class MarkupApi {
             let date = new Date(release_date);
 
             if (genresArray.length > 0) {
-              uniqueGenres = genresArray.filter(
-                (genre, index, array) => array.indexOf(genre) === index).join(', ');
+              uniqueGenres = genresArray
+                .filter((genre, index, array) => array.indexOf(genre) === index)
+                .join(', ');
+            } else {
+              uniqueGenres = ['Movie'];
             }
-            else { 
-              uniqueGenres = ["Movie"];
-            }
-               
-            
 
             let date2 = new Date(first_air_date);
             let year = date.getFullYear();
@@ -90,7 +89,10 @@ export class MarkupApi {
                 <div class="card__text">
                 <p class="card__genre">${uniqueGenres}</p>
                 <p class="card__year">${year || year2}</p>
-                <p class="card__rate">${vote}</p>
+                
+                <p class="card__rate ${
+                  this.isMainPage ? 'visually-hidden' : ''
+                }">${vote}</p>
                 </div>
             </div>
             </div>
@@ -114,6 +116,7 @@ export class MarkupApi {
 
   deleteMarkup() {
     refs.gallery.innerHTML = '';
+    this.isMainPage = false;
   }
 
   // Цей метод приймає дані (масив об'єктів) там відмальовує їх в розмітці.
