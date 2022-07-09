@@ -11,6 +11,7 @@ export function searchFilms() {
 
   async function onSearch(e) {
     markupApi.deleteMarkup();
+    markupApi.isMainPage = true;
     e.preventDefault();
 
     const form = e.currentTarget;

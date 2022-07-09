@@ -6,6 +6,12 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import ApiRequest from './js/genre-trand-request';
 import { defaultGalleyRender } from './js/default-gallery-render';
 import { searchFilms } from './js/search-films';
+import { PaginApi } from './js/pagination-api';
+import { PaginApi } from './js/pagination-api';
+import { MarkupApi } from './js/markup-api';
+import { second } from './js/second';
+
+const markupApi = new MarkupApi();
 
 const API_KEY = '83cba2c85d0df477852b094af9fbdddb';
 const axios = require('axios').default;
@@ -21,6 +27,7 @@ function searchByTranding() {
   if (currentLocation === '/index.html' || currentLocation === '/') {
     defaultGalleyRender();
     searchFilms();
+  } else {
+    second();
   }
 }
-
