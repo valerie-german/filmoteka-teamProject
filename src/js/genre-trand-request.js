@@ -32,4 +32,14 @@ export default class ApiRequest {
       Notify.failure(error);
     }
   }
+
+  async searchFilms(query, pageNumber) {
+    const responce = await axios.get(
+      `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=${pageNumber}&include_adult=false&query="${query}"`
+    );
+
+    this.totalPages = await responce.data.total_pages;
+
+    return responce.data.results;
+  }
 }
