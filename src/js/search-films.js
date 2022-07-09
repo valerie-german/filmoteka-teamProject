@@ -14,15 +14,12 @@ export function searchFilms() {
     e.preventDefault();
 
     const form = e.currentTarget;
-    console.log(form.elements.searchQuery.value);
 
     const data = await apiRequest.searchFilms(
       form.elements.searchQuery.value,
       apiRequest.page
     );
-    console.log(data);
     markupApi.renderMarkUp(data);
     paginationApi.deleteMarkup();
-    // createApi.fetchResults().then(results => console.log(results));
   }
 }
