@@ -10,6 +10,5 @@ export function getFilmId() {
       return;
     }
     markupApi.filmId = event.target.closest('.gallery-item').dataset.id;
-    console.log(markupApi.filmId);
   });
 }
