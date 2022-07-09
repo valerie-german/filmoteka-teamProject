@@ -19,6 +19,6 @@ window.addEventListener('DOMContentLoaded', searchByTranding);
 function searchByTranding() {
   if (currentLocation === '/index.html') {
     defaultGalleyRender();
+    searchFilms();
   }
 }
-searchFilms();
