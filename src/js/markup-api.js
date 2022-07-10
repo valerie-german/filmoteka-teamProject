@@ -22,6 +22,7 @@ export class MarkupApi {
     let result;
     let imageURL = 'https://image.tmdb.org/t/p/';
     result = filmsData
+
       .map(
         ({
           id,
@@ -37,8 +38,7 @@ export class MarkupApi {
           if (genre_ids) {
             let genresArray;
             let uniqueGenres = [];
-            let stubImage = "./images/enjoy-min.jpg";
-            
+            let stubImage = './images/enjoy-min.jpg';
 
             genresArray = dataGenres
               .filter(genre => genre_ids.includes(genre.id))
@@ -57,7 +57,7 @@ export class MarkupApi {
             let year = date.getFullYear();
             let year2 = date2.getFullYear();
             let vote = vote_average.toFixed(1);
-                        
+
             return ` 
         <li class="gallery-item" data-id="${id}">
         <a class="gallery__link" href="" data-action="${id}" onclick="return false">
@@ -70,6 +70,7 @@ export class MarkupApi {
                     ${imageURL}original${poster_path} 2x
                     "
                     media="(min-width: 1024px)"
+                    
                 />
                 <source
                     srcset="
@@ -89,6 +90,7 @@ export class MarkupApi {
                     src="${imageURL}original${poster_path}"
                     alt="${original_title}"
                     class="film-card__image"
+                    
                 />
                 </picture>
             </div>
@@ -96,7 +98,9 @@ export class MarkupApi {
             <div class="card">
                 <p class="card__name">${title || name}</p>
                 <div class="card__text">
-                <p class="card__genre">${uniqueGenres} | <span>${year || year2}</span></p>          
+                <p class="card__genre">${uniqueGenres} | <span>${
+              year || year2 || ''
+            }</span></p>          
                 <p class="card__rate ${
                   this.isMainPage ? 'visually-hidden' : ''
                 }">${vote}</p>
@@ -110,6 +114,7 @@ export class MarkupApi {
           }
         }
       )
+
       .join('');
     return result;
   }
