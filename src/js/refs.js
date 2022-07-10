@@ -7,4 +7,5 @@ export const refs = {
   queue: document.querySelector('[data-action="queue"]'),
   notification: document.querySelector('.notification'),
   pagination: document.querySelector('.gallery__pagination'),
+  preloader: document.querySelector('#preloader'),
 };

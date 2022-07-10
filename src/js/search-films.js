@@ -17,13 +17,13 @@ export function searchFilms() {
     paginationApi.deleteMarkup();
 
     const form = e.currentTarget;
-    
+
     const data = await apiRequest.searchFilms(
       apiRequest.page,
       form.elements.searchQuery.value
     );
 
-    if (refs.input.value === '' || data.length === 0) {
+if (refs.input.value === '' || data.length === 0) {
       return refs.notification.classList.remove("notify-is-hidden");
     } else {
       refs.notification.classList.add("notify-is-hidden");

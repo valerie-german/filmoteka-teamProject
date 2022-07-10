@@ -1,5 +1,6 @@
 const API_KEY = '83cba2c85d0df477852b094af9fbdddb';
 const URL = 'https://api.themoviedb.org/3';
+import { refs } from './refs';
 
 export default class CreateApiService {
   constructor() {
@@ -8,11 +9,13 @@ export default class CreateApiService {
   }
 
   fetchResults(query) {
+    refs.preloader.classList.add('hide-preloader');
     const url = `${URL}/search/movie?api_key=${API_KEY}&query=${query}&page=${this.page}`;
     return fetch(url)
       .then(r => r.json())
       .then(data => {
         this.showMore();
+        refs.preloader.classList.add('preloader-hiden');
         return data.results;
       });
   }

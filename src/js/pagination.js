@@ -32,6 +32,10 @@ export function pagiListeners(query) {
         return;
       }
 
+      if (paginationApi.refs.changingBtns.length < 6) {
+        paginationApi.isLastPage = false;
+        paginationApi.numberToRender = 1;
+      }
       let data;
 
       paginationApi.setCurrPage(event.target.textContent);
@@ -132,6 +136,12 @@ export function pagiListeners(query) {
         if (paginationApi.refs.changingBtns.length < 6) {
           return;
         }
+        if (
+          Number(paginationApi.refs.lastBtn.textContent) - 1 ===
+          Number(paginationApi.refs.changingBtns[5].textContent)
+        ) {
+          return;
+        }
         paginationApi.isLastPage = false;
         if (
           paginationApi.refs.changingBtns[0].textContent ===
@@ -186,6 +196,13 @@ export function pagiListeners(query) {
         event.target.classList.value.includes('path-prev')
       ) {
         paginationApi.isLastPage = false;
+
+        if (
+          Number(paginationApi.refs.lastBtn.textContent) - 1 ===
+          Number(paginationApi.refs.changingBtns[5].textContent)
+        ) {
+          return;
+        }
 
         if (paginationApi.refs.changingBtns[0].textContent === '1') {
           return;
