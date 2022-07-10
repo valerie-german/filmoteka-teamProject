@@ -20,11 +20,11 @@ const paginationApi = new PaginApi();
 // }
 
 export async function defaultGalleyRender() {
-  refs.preloader.classList.add('hide-preloader');
+  //refs.preloader.classList.add('hide-preloader');
   const data = await apiRequest.getTranding(apiRequest.page);
   // searchFilms();
   markupApi.renderMarkUp(data);
-  refs.preloader.classList.add('preloader-hiden');
+  //refs.preloader.classList.add('preloader-hiden');
   getFilmId();
   renderPagination(apiRequest.totalPages, refs.pagination);
 
