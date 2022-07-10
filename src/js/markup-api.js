@@ -21,8 +21,9 @@ export class MarkupApi {
 
     let result;
     let imageURL = 'https://image.tmdb.org/t/p/';
+    const defaultImgPath = "https://i.ibb.co/4gF0DzF/enjoy-min.jpg";
+    
     result = filmsData
-
       .map(
         ({
           id,

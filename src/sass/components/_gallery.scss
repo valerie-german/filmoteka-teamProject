@@ -103,6 +103,8 @@ li {
   margin-bottom: 10px;
   border-radius: 5px;
   object-fit: cover;
+  background-image: url('../images/enjoy-min.jpg');
+  
 
   &:hover,
   &:focus {
@@ -117,6 +119,7 @@ li {
     height: 574px;
   }
 }
+
 
 .card__name {
   color: var(--primary-text-color);

@@ -88,8 +88,8 @@ async function getMovieById(id) {
 
 function renderMovieDetails(data) {
   document.querySelector('.card-modal__container').innerHTML = "";
-  const defaultImgPath = "https://i.ibb.co/4gF0DzF/enjoy-min.jpg"
-  const imageURL = "https://image.tmdb.org/t/p/"
+  const defaultImgPath = "https://i.ibb.co/4gF0DzF/enjoy-min.jpg";
+  const imageURL = "https://image.tmdb.org/t/p/";
   let markUp = "";
   const { id, genres, title, original_title, overview, popularity, poster_path, vote_average, vote_count, release_date } = data;
   // const obj = { id, genres, title, poster_path, vote_average, release_date };
