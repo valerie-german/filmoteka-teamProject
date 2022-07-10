@@ -1,5 +1,6 @@
 export const refs = {
   form: document.querySelector('.js-search-form'),
+  input: document.querySelector('.js-input'),
   gallery: document.querySelector('.gallery-home-list'),
   modalWindow: document.querySelector('.backdrop'),
   watched: document.querySelector('[data-action="watched"]'),
