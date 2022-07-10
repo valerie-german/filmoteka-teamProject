@@ -12,6 +12,13 @@ export class MarkupApi {
   }
 
   makeGalleryCardsMarkup(filmsData, dataGenres) {
+    const currentLocation = window.location.pathname;
+    if (currentLocation === '/index.html' || currentLocation === '/') {
+      this.isMainPage = true;
+    } else {
+      this.isMainPage = false;
+    }
+
     let result;
     let imageURL = 'https://image.tmdb.org/t/p/';
     result = filmsData
@@ -115,7 +122,6 @@ export class MarkupApi {
 
   deleteMarkup() {
     refs.gallery.innerHTML = '';
-    this.isMainPage = false;
   }
 
   // Цей метод приймає дані (масив об'єктів) там відмальовує їх в розмітці.

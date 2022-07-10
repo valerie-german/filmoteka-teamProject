@@ -9,7 +9,6 @@ const apiRequest = new ApiRequest();
 const markupApi = new MarkupApi();
 
 export function pagiListeners(query) {
-  // paginationApi.deleteMarkup();
   paginationApi.getRefs();
   paginationApi.query = query;
 
@@ -50,12 +49,6 @@ export function pagiListeners(query) {
         data = await apiRequest.getTranding(paginationApi._currentPage);
       }
 
-      // const data = paginationApi.query
-      //   ? await apiRequest.searchFilms(
-      //       paginationApi._currentPage,
-      //       paginationApi.query
-      //     )
-      // : await apiRequest.getTranding(paginationApi._currentPage);
       const dataGenres = await apiRequest.getGenre();
       markupApi.append(data, dataGenres);
 
@@ -221,7 +214,6 @@ export function pagiListeners(query) {
           paginationApi.isLastForDisabled = false;
         }
       }
-      // paginationApi.isFirstRender = true;
     }
   }
 }

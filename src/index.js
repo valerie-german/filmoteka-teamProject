@@ -25,7 +25,5 @@ window.addEventListener('DOMContentLoaded', searchByTranding);
 function searchByTranding() {
   if (currentLocation === '/index.html' || currentLocation === '/') {
     defaultGalleyRender();
-  } else {
-    // second();
   }
 }

@@ -14,8 +14,6 @@ export function searchFilms() {
     e.preventDefault();
     markupApi.deleteMarkup();
     paginationApi.deleteMarkup();
-    // paginationApi.deleteMarkup();
-    markupApi.isMainPage = true;
 
     const form = e.currentTarget;
 
