@@ -90,12 +90,13 @@ export function pagiListeners(query) {
       if (!event.target.classList.value.includes('last__btn')) {
         return;
       }
+      if (paginationApi.refs.changingBtns.length < 6) {
+        return;
+      }
 
       if (event.target.textContent === '1') {
         return;
       }
-
-      console.log(event.target.textContent);
 
       paginationApi.isLastPage = true;
       paginationApi.isLast = true;
@@ -128,8 +129,7 @@ export function pagiListeners(query) {
         event.target.classList.value.includes('svg-next') ||
         event.target.classList.value.includes('path-next')
       ) {
-        console.log(paginationApi.refs.changingBtns.length);
-        if (paginationApi.refs.changingBtns.length === 1) {
+        if (paginationApi.refs.changingBtns.length < 6) {
           return;
         }
         paginationApi.isLastPage = false;
