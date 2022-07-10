@@ -132,9 +132,12 @@ li {
 }
 
 .card__genre {
-  display: flex;
-  align-items: baseline;
-  border-right: 1 px solid #ff6b08;
+  //display: flex;
+  //align-items: baseline;
+  color: var(--secondary-color-title-card);
+  margin-right: 4px;
+  padding-right: 4px;
+  //border-right: 1 px solid #ff6b08;
 }
 
 .card__text {
@@ -152,12 +155,6 @@ li {
   }
 }
 
-.card__genre {
-  color: var(--secondary-color-title-card);
-  margin-right: 4px;
-  padding-right: 4px;
-  border-right: 1px solid #ff6b08;
-}
 
 .card__rate {
   display: flex;
