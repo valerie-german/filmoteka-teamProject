@@ -65,7 +65,8 @@ export class PaginApi {
           <button class="pagination-btns__btn dots__btn" disabled="true">...</button>
         </li>
         `);
-      if (totalPage > 7) {
+      console.log(this.isLastPage);
+      if (totalPage > 6) {
         lastPageBtn = 6;
       }
       if (!this.isLastPage) {
@@ -137,6 +138,13 @@ export class PaginApi {
 
     this.getRefs();
     this.refs.currentBtn.classList.add('btn-pag--current');
+
+    if (this.refs.changingBtns.length < 6) {
+      this.refs.btnPrev.classList.add('visually-hidden');
+      this.refs.firstBtn.classList.add('visually-hidden');
+      this.refs.lastBtn.classList.add('visually-hidden');
+      this.refs.btnNext.classList.add('visually-hidden');
+    }
   }
 
   getRefs() {
