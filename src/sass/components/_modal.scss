@@ -148,6 +148,9 @@
 .feature__list{
   margin-right: 40px;
   min-width: 70px;
+  @media screen and (min-width: 1024px) {
+      margin-right: 84px;
+    }
 }
 
 .meta__feature {
@@ -158,13 +161,6 @@
   color: var(--modal-secondary-text-color);
 }
 
-.feature__item {
-  //margin-right: 41px;
-
-  @media screen and (min-width: 1024px) {
-    margin-right: 84px;
-  }
-}
 
 .value__list {
   display: flex;
