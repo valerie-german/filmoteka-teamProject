@@ -20,7 +20,6 @@ const paginationApi = new PaginApi();
 // }
 
 export async function defaultGalleyRender() {
-  markupApi.isMainPage = true;
   const data = await apiRequest.getTranding(apiRequest.page);
   // searchFilms();
   markupApi.renderMarkUp(data);
@@ -35,7 +34,6 @@ export async function defaultGalleyRender() {
   //   e.preventDefault();
   //   markupApi.deleteMarkup();
   //   paginationApi.deleteMarkup();
-  //   markupApi.isMainPage = false;
 
   //   const form = e.currentTarget;
 
