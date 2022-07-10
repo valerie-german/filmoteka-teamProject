@@ -1,8 +1,10 @@
-window.addEventListener('DOMContentLoaded', () => {
-  let preloader = document.querySelector('#preloader');
+//window.addEventListener('DOMContentLoaded', () => {
+  //let preloader = document.querySelector('#preloader');
 
-  preloader.classList.add('hide-preloader');
-  setTimeout(() => {
-    preloader.classList.add('preloader-hiden');
-  }, 950);
-});
+ // preloader.classList.add('hide-preloader');
+ // setTimeout(() => {
+  //  preloader.classList.add('preloader-hiden');
+  //}, 950);
+//});
+
+//let preloader = document.querySelector('#preloader');

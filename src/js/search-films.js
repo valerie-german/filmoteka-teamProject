@@ -16,13 +16,15 @@ export function searchFilms() {
     paginationApi.deleteMarkup();
 
     const form = e.currentTarget;
-
+    refs.preloader.classList.add('hide-preloader');
     const data = await apiRequest.searchFilms(
       apiRequest.page,
       form.elements.searchQuery.value
     );
+    
     markupApi.renderMarkUp(data);
     paginationApi.query = await form.elements.searchQuery.value;
+    refs.preloader.classList.add('preloader-hiden');
     renderPagination(
       apiRequest.totalPages,
       refs.pagination,
