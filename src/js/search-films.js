@@ -11,10 +11,11 @@ export function searchFilms() {
   refs.form.addEventListener('submit', onSearch);
 
   async function onSearch(e) {
+    e.preventDefault();
     markupApi.deleteMarkup();
     paginationApi.deleteMarkup();
+    // paginationApi.deleteMarkup();
     markupApi.isMainPage = true;
-    e.preventDefault();
 
     const form = e.currentTarget;
 
@@ -24,7 +25,10 @@ export function searchFilms() {
     );
     markupApi.renderMarkUp(data);
     paginationApi.query = await form.elements.searchQuery.value;
-
-    renderPagination(apiRequest.totalPages, refs.pagination);
+    renderPagination(
+      apiRequest.totalPages,
+      refs.pagination,
+      form.elements.searchQuery.value
+    );
   }
 }
