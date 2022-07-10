@@ -14,7 +14,6 @@ export class MarkupApi {
   makeGalleryCardsMarkup(filmsData, dataGenres) {
     let result;
     let imageURL = 'https://image.tmdb.org/t/p/';
-    console.log(this.isMainPage);
     result = filmsData
       .map(
         ({

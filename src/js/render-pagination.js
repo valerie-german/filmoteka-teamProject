@@ -7,10 +7,7 @@ import ApiRequest from './genre-trand-request';
 
 const apiRequest = new ApiRequest();
 
-export function renderPagination(total, placeToAppend) {
+export function renderPagination(total, placeToAppend, query) {
   paginationApi.append(total, placeToAppend);
-  pagiListeners();
-
-  console.log(paginationApi.query);
-  //   console.log(paginationApi.refs);
+  pagiListeners(query);
 }
