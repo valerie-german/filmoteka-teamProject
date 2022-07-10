@@ -108,7 +108,6 @@
   padding: 0;
   background-repeat: no-repeat;
   background-position: center;
-  
 
   background: url(../images/home-page-bg/home-img-320.png) var(--hero-bg-color);
   background-size: cover;
@@ -117,32 +116,37 @@
     (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-    background: url(../images/home-page-bg/home-img-320-2x.png) var(--hero-bg-color);
+    background: url(../images/home-page-bg/home-img-320-2x.png)
+      var(--hero-bg-color);
     background-size: cover;
   }
 
   @media screen and (min-width: 767px) {
-    background: url(../images/home-page-bg/home-img-768.png) var(--hero-bg-color);
+    background: url(../images/home-page-bg/home-img-768.png)
+      var(--hero-bg-color);
     background-size: cover;
 
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background: url(../images/home-page-bg/home-img-768-2x.png) var(--hero-bg-color);
+      background: url(../images/home-page-bg/home-img-768-2x.png)
+        var(--hero-bg-color);
       background-size: cover;
     }
   }
 
   @media screen and (min-width: 1279px) {
-    background: url(../images/home-page-bg/home-img-1280.png) var(--hero-bg-color);
+    background: url(../images/home-page-bg/home-img-1280.png)
+      var(--hero-bg-color);
     background-size: cover;
 
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background: url(../images/home-page-bg/home-img-1280-2x.png) var(--hero-bg-color);
+      background: url(../images/home-page-bg/home-img-1280-2x.png)
+        var(--hero-bg-color);
       background-size: cover;
     }
   }
@@ -258,7 +262,6 @@
   background-position: top;
   background-size: cover;
 
-
   background-image: url(../images/my-library-bg/my-library-img-320.png);
 
   @media (min-device-pixel-ratio: 2),
@@ -304,7 +307,6 @@
   background-color: var(--hero-bg-color);
 }
 
-
 .hero-lib-buttons__list {
   display: flex;
   justify-content: center;
@@ -336,6 +338,12 @@
     filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
     border: none;
   }
+}
+
+.is-active {
+  background-color: var(--hero-btn-color);
+  filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
+  border: none;
 }
 
 .hero-lib-buttons__item:not(:last-child) {

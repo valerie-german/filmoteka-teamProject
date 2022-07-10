@@ -1,6 +1,7 @@
 import './js/modal';
 import './js/preloader';
 import './js/scroll-up';
+import './js/local-storage';
 import { refs } from './js/refs';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import ApiRequest from './js/genre-trand-request';
