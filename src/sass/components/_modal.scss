@@ -142,8 +142,12 @@
 
 .meta-container {
   display: flex;
-
   margin-bottom: 20px;
+  
+}
+.feature__list{
+  margin-right: 40px;
+  min-width: 70px;
 }
 
 .meta__feature {
@@ -155,7 +159,7 @@
 }
 
 .feature__item {
-  margin-right: 41px;
+  //margin-right: 41px;
 
   @media screen and (min-width: 1024px) {
     margin-right: 84px;
