@@ -8,4 +8,5 @@ export const refs = {
   notification: document.querySelector('.notification'),
   pagination: document.querySelector('.gallery__pagination'),
   preloader: document.querySelector('#preloader'),
+  libraryMassage: document.querySelector('.library-information'),
 };

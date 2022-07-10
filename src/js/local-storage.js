@@ -15,6 +15,12 @@ if (currentLocation === '/my-library.html') {
   });
 }
 
+if (viewedFilms !== null) {
+  refs.libraryMassage.classList.add('visually-hidden');
+} else {
+  refs.libraryMassage.classList.remove('visually-hidden');
+}
+
 function getSavedFilms() {
   clearGallery();
   markupOfSavedFilms();
