@@ -24,7 +24,7 @@ export default class ApiRequest {
   async getTranding(pageNumber) {
     try {
       const responce = await axios.get(
-        `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&page=${pageNumber}`
+        `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&page=${pageNumber}`
       );
       // this.page += 1;
       this.totalPages = await responce.data.total_pages;
