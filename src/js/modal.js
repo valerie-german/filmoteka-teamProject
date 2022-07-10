@@ -66,7 +66,7 @@ async function onClickSearchAndRenderById(event) {
     refs.backdrop.classList.remove('backdrop--hidden')
     document.body.style.overflow = "hidden";
   
-    const movieId = +event.target.closest('.gallery-item').dataset.id;
+    const movieId = event.target.closest('.gallery-item').dataset.id;
     try {
         const { data } = await getMovieById(movieId);
         console.log(data)
