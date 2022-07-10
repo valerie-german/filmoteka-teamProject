@@ -89,16 +89,6 @@ export class PaginApi {
         </li>`);
         }
       }
-      // this.firstAndNearFirsGroup(array);
-
-      // for (let index = 0; index < 6; index += 1) {
-      //   let currentP = this.numberToRender;
-      //   array.push(`<li class="pagination-btns__item">
-      //       <button class="pagination-btns__btn btn__static btn-page${
-      //         currentP + index
-      //       } btn-page-number${currentP + index}">${currentP + index}</button>
-      //     </li>`);
-      // }
 
       array.push(`<li class="pagination-btns__item">
           <button class="pagination-btns__btn dots__btn" disabled="true">...</button>
