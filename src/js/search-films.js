@@ -7,6 +7,7 @@ const paginationApi = new PaginApi();
 const markupApi = new MarkupApi();
 const apiRequest = new ApiRequest();
 
+
 export function searchFilms() {
   refs.form.addEventListener('submit', onSearch);
 
@@ -16,17 +17,23 @@ export function searchFilms() {
     paginationApi.deleteMarkup();
 
     const form = e.currentTarget;
-
+    
     const data = await apiRequest.searchFilms(
       apiRequest.page,
       form.elements.searchQuery.value
     );
-    markupApi.renderMarkUp(data);
-    paginationApi.query = await form.elements.searchQuery.value;
-    renderPagination(
-      apiRequest.totalPages,
-      refs.pagination,
-      form.elements.searchQuery.value
-    );
+
+    if (refs.input.value === '' || data.length === 0) {
+      return refs.notification.classList.remove("notify-is-hidden");
+    } else {
+      refs.notification.classList.add("notify-is-hidden");
+      markupApi.renderMarkUp(data);
+      paginationApi.query = await form.elements.searchQuery.value;
+      renderPagination(
+        apiRequest.totalPages,
+        refs.pagination,
+        form.elements.searchQuery.value
+        );
+    }
   }
 }
