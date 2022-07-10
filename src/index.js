@@ -24,6 +24,7 @@ const currentLocation = window.location.pathname;
 window.addEventListener('DOMContentLoaded', searchByTranding);
 function searchByTranding() {
   if (currentLocation === '/index.html' || currentLocation === '/') {
+    refs.libraryMassage.classList.add('visually-hidden');
     defaultGalleyRender();
   }
 }

@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   preloader.classList.add('hide-preloader');
   setTimeout(() => {
-  preloader.classList.add('preloader-hiden');
+    preloader.classList.add('preloader-hiden');
   }, 950);
 });
 
