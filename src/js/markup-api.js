@@ -37,6 +37,8 @@ export class MarkupApi {
           if (genre_ids) {
             let genresArray;
             let uniqueGenres = [];
+            let stubImage = "./images/enjoy-min.jpg";
+            
 
             genresArray = dataGenres
               .filter(genre => genre_ids.includes(genre.id))
@@ -55,6 +57,7 @@ export class MarkupApi {
             let year = date.getFullYear();
             let year2 = date2.getFullYear();
             let vote = vote_average.toFixed(1);
+                        
             return ` 
         <li class="gallery-item" data-id="${id}">
         <a class="gallery__link" href="" data-action="${id}" onclick="return false">
