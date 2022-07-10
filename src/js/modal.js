@@ -87,6 +87,7 @@ async function getMovieById(id) {
 
 
 function renderMovieDetails(data) {
+  document.querySelector('.card-modal__container').innerHTML = "";
   const defaultImgPath = "https://i.ibb.co/4gF0DzF/enjoy-min.jpg"
   const imageURL = "https://image.tmdb.org/t/p/"
   let markUp = "";
