@@ -93,9 +93,7 @@ export class MarkupApi {
             <div class="card">
                 <p class="card__name">${title || name}</p>
                 <div class="card__text">
-                <p class="card__genre">${uniqueGenres}</p>
-                <p class="card__year">${year || year2}</p>
-                
+                <p class="card__genre">${uniqueGenres} | <span>${year || year2}</span></p>          
                 <p class="card__rate ${
                   this.isMainPage ? 'visually-hidden' : ''
                 }">${vote}</p>
