@@ -34,7 +34,7 @@ export class MarkupApi {
           vote_average,
           original_title,
           first_air_date,
-        } = {}) => {
+        }) => {
           if (genre_ids) {
             let genresArray;
             let uniqueGenres = [];
@@ -81,7 +81,7 @@ export class MarkupApi {
                 />
                 <source
                     srcset="
-                    ${imageURL}w342${poster_path} 1x,
+                    ${imageURL}w185${poster_path} 1x,
                     ${imageURL}w500${poster_path} 2x
                     "
                     media="(min-width: 320px)"
