@@ -16,8 +16,7 @@ export function searchFilms() {
   async function onSearch(e) {
     e.preventDefault();
     showPreloader();
-    markupApi.deleteMarkup();
-    paginationApi.deleteMarkup();
+    
 
     const form = e.currentTarget;
 
@@ -28,11 +27,13 @@ export function searchFilms() {
 
     if (refs.input.value === '' || data.length === 0) {
       hidePreloader();
+      refs.input.value = '';
       return refs.notification.classList.remove('notify-is-hidden');
     } else {
       hidePreloader();
       refs.notification.classList.add('notify-is-hidden');
-
+      markupApi.deleteMarkup();
+      paginationApi.deleteMarkup();
       markupApi.renderMarkUp(data);
       paginationApi.query = await form.elements.searchQuery.value;
       renderPagination(
