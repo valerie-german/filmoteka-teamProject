@@ -101,8 +101,7 @@ function markupOfSavedFilms() {
             <div class="card">
                 <p class="card__name">${title}</p>
                 <div class="card__text">
-                <p class="card__genre">${genre}</p>
-                <p class="card__year">${year}</p>
+                <p class="card__genre">${genre} | <span class="card__year">${year}</span></p>                
                 <p class="card__rate">${vote_average}</p>
                 </div>
             </div>
@@ -166,8 +165,7 @@ function markupOfFilmsFromQueue() {
             <div class="card">
                 <p class="card__name">${title}</p>
                 <div class="card__text">
-                <p class="card__genre">${genre}</p>
-                <p class="card__year">${year}</p>
+                <p class="card__genre">${genre} | <span class="card__year">${year}</span></p>
                 <p class="card__rate">${vote_average}</p>
                 </div>
             </div>
