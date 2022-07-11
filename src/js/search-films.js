@@ -3,6 +3,7 @@ import ApiRequest from './genre-trand-request';
 import { refs } from './refs';
 import { PaginApi } from './pagination-api';
 import { renderPagination } from './render-pagination';
+
 const paginationApi = new PaginApi();
 const markupApi = new MarkupApi();
 const apiRequest = new ApiRequest();
@@ -13,8 +14,7 @@ export function searchFilms() {
 
   async function onSearch(e) {
     e.preventDefault();
-    markupApi.deleteMarkup();
-    paginationApi.deleteMarkup();
+    
 
     const form = e.currentTarget;
 
@@ -23,10 +23,13 @@ export function searchFilms() {
       form.elements.searchQuery.value
     );
 
-if (refs.input.value === '' || data.length === 0) {
+    if (refs.input.value === '' || data.length === 0) {
+      refs.input.value = '';
       return refs.notification.classList.remove("notify-is-hidden");
     } else {
       refs.notification.classList.add("notify-is-hidden");
+      markupApi.deleteMarkup();
+      paginationApi.deleteMarkup();
       markupApi.renderMarkUp(data);
       paginationApi.query = await form.elements.searchQuery.value;
       renderPagination(
