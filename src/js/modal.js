@@ -16,6 +16,7 @@ refs.closeModalBtnFooter.addEventListener('click', closeModal);
 refs.backdropFooter.addEventListener('click', onClickBackdrop);
 
 refs.galleryLink[0].addEventListener('click', onClickSearchAndRenderById);
+
 refs.btnModal.addEventListener('click', closeModalGallery);
 refs.backdrop.addEventListener('click', onClickBackdrop);
 
