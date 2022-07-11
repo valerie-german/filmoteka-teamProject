@@ -3,6 +3,7 @@ import './js/preloader';
 import './js/scroll-up';
 import './js/local-storage';
 import './js/parce-storage';
+import './js/themePage';
 import { refs } from './js/refs';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import ApiRequest from './js/genre-trand-request';
