@@ -21,6 +21,7 @@ if (currentLocation === '/my-library.html') {
 viewedFilms === null && refs.libraryMassage.classList.remove('visually-hidden');
 
 function getSavedFilms() {
+  refs.queue.classList.remove('is-active');
   clearGallery();
   showPreloader();
   if (viewedFilms === null) {
@@ -37,6 +38,7 @@ function getSavedFilms() {
 
 function getFilmsFromQueue() {
   refs.watched.classList.remove('is-active');
+  refs.queue.classList.add('is-active');
   clearGallery();
   showPreloader();
   if (filmsForWatching === null) {

@@ -68,6 +68,7 @@ async function onClickSearchAndRenderById(event) {
     createAndUpdateInstance(data);
   } catch (error) {
     console.log(error);
+    hidePreloader();
   }
 }
 
