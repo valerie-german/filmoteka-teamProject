@@ -2,6 +2,7 @@ const API_KEY = '83cba2c85d0df477852b094af9fbdddb';
 import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { refs } from './refs';
+import { hidePreloader, showPreloader } from './preloader';
 
 export default class ApiRequest {
   constructor() {
@@ -23,6 +24,11 @@ export default class ApiRequest {
   }
 
   async getTranding(pageNumber) {
+    showPreloader();
+
+    setTimeout(() => {
+      hidePreloader();
+    }, 300);
     try {
       //refs.preloader.classList.add('hide-preloader');
       const responce = await axios.get(
