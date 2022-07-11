@@ -1,11 +1,22 @@
 import { refs } from './refs';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { showPreloader, hidePreloader } from './preloader';
+import { watchedF, queueF } from './parce-storage';
 
 const galleryList = refs.gallery;
 const currentLocation = window.location.pathname;
-const viewedFilms = JSON.parse(localStorage.getItem('watchedMovies'));
-const filmsForWatching = JSON.parse(localStorage.getItem('queuedMovies'));
+const viewedFilms = watchedF();
+const filmsForWatching = queueF();
+console.log(watchedF);
+
+Notify.init({
+  width: '200px',
+  position: 'right-top',
+  distance: '10px',
+  borderRadius: '5px',
+  timeout: 3000,
+  pauseOnHover: true,
+});
 
 if (currentLocation === '/my-library.html') {
   window.addEventListener('DOMContentLoaded', () => {
@@ -23,12 +34,17 @@ viewedFilms === null && refs.libraryMassage.classList.remove('visually-hidden');
 function getSavedFilms() {
   refs.queue.classList.remove('is-active');
   clearGallery();
-  showPreloader();
-  if (viewedFilms === null) {
-    refs.queueInformation.classList.add('queue-hidden');
-    refs.libraryMassage.classList.remove('visually-hidden');
-  } else {
-    markupOfSavedFilms();
+
+  try {
+    if (viewedFilms === null) {
+      refs.queueInformation.classList.add('queue-hidden');
+      refs.libraryMassage.classList.remove('visually-hidden');
+    } else {
+      showPreloader();
+      markupOfSavedFilms();
+    }
+  } catch (error) {
+    Notify.failure(error);
   }
 
   setTimeout(() => {
@@ -40,13 +56,19 @@ function getFilmsFromQueue() {
   refs.watched.classList.remove('is-active');
   refs.queue.classList.add('is-active');
   clearGallery();
-  showPreloader();
-  if (filmsForWatching === null) {
-    refs.queueInformation.classList.remove('queue-hidden');
-    refs.libraryMassage.classList.add('visually-hidden');
-  } else {
-    markupOfFilmsFromQueue();
+
+  try {
+    if (filmsForWatching === null) {
+      refs.queueInformation.classList.remove('queue-hidden');
+      refs.libraryMassage.classList.add('visually-hidden');
+    } else {
+      showPreloader();
+      markupOfFilmsFromQueue();
+    }
+  } catch (error) {
+    Notify.failure(error);
   }
+
   setTimeout(() => {
     hidePreloader();
   }, 600);
@@ -58,10 +80,11 @@ function markupOfSavedFilms() {
 
   let markup = viewedFilms
 
-    .map(({ id, poster_path, title, release_date, vote_average, genres} = {} ) => {
-      let date = new Date(release_date);
-      let year = date.getFullYear();
-      const genre = genres.map(genre => genre.name).join(', ');
+    .map(
+      ({ id, poster_path, title, release_date, vote_average, genres } = {}) => {
+        let date = new Date(release_date);
+        let year = date.getFullYear();
+        const genre = genres.map(genre => genre.name).join(', ');
 
         return `
         <li class="gallery-item" data-id="${id}">
