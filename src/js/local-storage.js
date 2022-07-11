@@ -85,13 +85,10 @@ function markupOfSavedFilms() {
         let date = new Date(release_date);
         let year = date.getFullYear();
         const genre = genres.map(genre => genre.name).join(', ');
+        let imageMarkup = '';
 
-        return `
-        <li class="gallery-item" data-id="${id}">
-        <a class="gallery__link" href="" data-action="" onclick="return false">
-            <div class="film-card">
-           <div class="film-card__image">
-              <picture>
+        if (poster_path) {
+          imageMarkup = `<picture>
               <source
                   srcset="
                   ${imageURL || defaultImgPath}w780${poster_path}     1x,
@@ -115,12 +112,21 @@ function markupOfSavedFilms() {
               />
               <img
                   src="${imageURL || defaultImgPath}original${poster_path}"
+                  loading="lazy"
                   alt="${title}"
                   class="film-card__image"
               />
-              </picture>
-          </div>
+              </picture>`;
+        }
+        else { 
+              imageMarkup = `<img class="default-img" loading="lazy" alt="${original_title}" src="${DEFAULT_IMG_PATH}"/>`;
+            }
 
+        return `
+        <li class="gallery-item" data-id="${id}">
+        <a class="gallery__link" href="" data-action="" onclick="return false">
+            <div class="film-card">
+           <div class="film-card__image">${imageMarkup}</div>
             <div class="card">
                 <p class="card__name">${title}</p>
                 <div class="card__text">

@@ -39,8 +39,7 @@ export class MarkupApi {
           if (genre_ids) {
             let genresArray;
             let uniqueGenres = [];
-            let stubImage = './images/enjoy-min.jpg';
-
+            
             genresArray = dataGenres
               .filter(genre => genre_ids.includes(genre.id))
               .map(genre => genre.name);
@@ -93,7 +92,7 @@ export class MarkupApi {
                 </picture>`;
             }
             else { 
-              imageMarkup = `<img class="default-img" alt="${original_title}" src="${DEFAULT_IMG_PATH}"/>`;
+              imageMarkup = `<img class="default-img" loading="lazy" alt="${original_title}" src="${DEFAULT_IMG_PATH}"/>`;
             }
 
             let markUp = `<li class="gallery-item" data-id="${id}">
