@@ -1,15 +1,15 @@
 const API_KEY = '83cba2c85d0df477852b094af9fbdddb';
 const axios = require('axios').default;
-import { Notify } from 'notiflix/build/notiflix-notify-aio'
-
-const refs = {
-    openModalFooter: document.querySelector('.footer-link'),
-    closeModalBtnFooter: document.querySelector('.team-modal__close'),
-    backdropFooter: document.querySelector('.team-modal'),
-    galleryLink: document.querySelectorAll('.gallery-home'),
-    btnModal: document.querySelector('.modal-close'),
-    backdrop: document.querySelector('.backdrop')
-}
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { refs } from './refs';
+// const refs = {
+//     openModalFooter: document.querySelector('.footer-link'),
+//     closeModalBtnFooter: document.querySelector('.team-modal__close'),
+//     backdropFooter: document.querySelector('.team-modal'),
+//     galleryLink: document.querySelectorAll('.gallery-home'),
+//     btnModal: document.querySelector('.modal-close'),
+//     backdrop: document.querySelector('.backdrop')
+// }
 
 refs.openModalFooter.addEventListener('click', openModal);
 refs.closeModalBtnFooter.addEventListener('click', closeModal);
@@ -57,13 +57,17 @@ function onEscKeyPress(event) {
 
 
 async function onClickSearchAndRenderById(event) {
-    
+  refs.preloader.classList.remove('hide-preloader')
+  refs.preloader.classList.remove('preloader-hiden')
+  
     if (event.target.nodeName === 'UL') {
       return;
     }
+  
     window.addEventListener('keydown', onEscKeyPress )
     refs.backdrop.classList.remove('backdrop--hidden')
     document.body.style.overflow = "hidden";
+    refs.preloader.classList.add('hide-preloader')
   
     const movieId = event.target.closest('.gallery-item').dataset.id;
     try {
@@ -71,7 +75,7 @@ async function onClickSearchAndRenderById(event) {
         console.log(data)
             renderMovieDetails(data);
         createAndUpdateInstance(data);
-        
+        refs.preloader.classList.add('preloader-hiden')
         
     } catch (error) {
         console.log(error)
@@ -298,7 +302,7 @@ function createAndUpdateInstance({
     document.querySelector('.modal-btn--queued').removeEventListener('click', removeMovieFromQueued);
     document.querySelector('.modal-btn--queued').addEventListener('click', addToQueue);
       document.querySelector('.modal-btn--queued').textContent = "add to queue";
-      Notify.success("Removed from watched")
+      Notify.success("Removed from queued")
 
   }
 
