@@ -1,6 +1,7 @@
 const API_KEY = '83cba2c85d0df477852b094af9fbdddb';
 const axios = require('axios').default;
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 import { hidePreloader, showPreloader } from './preloader';
 
 const refs = {
@@ -17,7 +18,6 @@ refs.closeModalBtnFooter.addEventListener('click', closeModal);
 refs.backdropFooter.addEventListener('click', onClickBackdrop);
 
 refs.galleryLink[0].addEventListener('click', onClickSearchAndRenderById);
-
 refs.btnModal.addEventListener('click', closeModalGallery);
 refs.backdrop.addEventListener('click', onClickBackdrop);
 
@@ -155,7 +155,7 @@ function renderMovieDetails(data) {
               </div>
             </li>
             <li class="value__item">
-              <span class="meta__value">${popularity}</span>
+              <span class="meta__value">${popularity.toFixed(1)}</span>
             </li>
             <li class="value__item">
               <span class="meta__value original-title">${original_title}</span>
@@ -326,6 +326,7 @@ function createAndUpdateInstance({
   function removeMovieFromQueued() {
     showPreloader();
     movie.removeFromQueued(movieId);
+
     document
       .querySelector('.modal-btn--queued')
       .removeEventListener('click', removeMovieFromQueued);

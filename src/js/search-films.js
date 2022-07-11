@@ -3,7 +3,9 @@ import ApiRequest from './genre-trand-request';
 import { refs } from './refs';
 import { PaginApi } from './pagination-api';
 import { renderPagination } from './render-pagination';
+
 import { showPreloader, hidePreloader } from './preloader';
+
 const paginationApi = new PaginApi();
 const markupApi = new MarkupApi();
 const apiRequest = new ApiRequest();
@@ -30,6 +32,7 @@ export function searchFilms() {
     } else {
       hidePreloader();
       refs.notification.classList.add('notify-is-hidden');
+
       markupApi.renderMarkUp(data);
       paginationApi.query = await form.elements.searchQuery.value;
       renderPagination(

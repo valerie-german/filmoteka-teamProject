@@ -57,12 +57,13 @@ function markupOfSavedFilms() {
   const imageURL = 'https://image.tmdb.org/t/p/';
 
   let markup = viewedFilms
-    .map(({ id, poster_path, title, release_date, vote_average, genres }) => {
+
+    .map(({ id, poster_path, title, release_date, vote_average, genres} = {} ) => {
       let date = new Date(release_date);
       let year = date.getFullYear();
       const genre = genres.map(genre => genre.name).join(', ');
 
-      return `
+        return `
         <li class="gallery-item" data-id="${id}">
         <a class="gallery__link" href="" data-action="" onclick="return false">
             <div class="film-card">
@@ -108,7 +109,8 @@ function markupOfSavedFilms() {
             </div>
         </a>
         </li>`;
-    })
+      }
+    )
     .join('');
   galleryList.insertAdjacentHTML('beforeend', markup);
 }
@@ -120,13 +122,14 @@ function markupOfFilmsFromQueue() {
   const imageURL = 'https://image.tmdb.org/t/p/';
 
   let markup = filmsForWatching
-    .map(({ poster_path, title, release_date, vote_average, genres }) => {
-      let date = new Date(release_date);
-      let year = date.getFullYear();
-      const genre = genres.map(genre => genre.name).join(', ');
+    .map(
+      ({ id, poster_path, title, release_date, vote_average, genres } = {}) => {
+        let date = new Date(release_date);
+        let year = date.getFullYear();
+        const genre = genres.map(genre => genre.name).join(', ');
 
-      return `
-        <li class="gallery-item" data-id="">
+        return `
+        <li class="gallery-item" data-id="${id}">
         <a class="gallery__link" href="" data-action="" onclick="return false">
             <div class="film-card">
            <div class="film-card__image">
@@ -171,7 +174,8 @@ function markupOfFilmsFromQueue() {
             </div>
         </a>
         </li>`;
-    })
+      }
+    )
     .join('');
   galleryList.insertAdjacentHTML('beforeend', markup);
 }
