@@ -97,12 +97,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  fill: var(--primary-text-color);
-    &:hover,
-    &:focus {
-      fill: var(--hero-btn-color);
-    }
-
 }
 
 .card-modal__img {
