@@ -151,7 +151,7 @@ function renderMovieDetails(data) {
               </div>
             </li>
             <li class="value__item">
-              <span class="meta__value">${popularity}</span>
+              <span class="meta__value">${popularity.toFixed(1)}</span>
             </li>
             <li class="value__item">
               <span class="meta__value original-title">${original_title}</span>
