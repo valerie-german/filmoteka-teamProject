@@ -1,6 +1,6 @@
 import { PaginApi } from './pagination-api';
 import { refs } from './refs';
-
+import { hidePreloader, showPreloader } from './preloader';
 import ApiRequest from './genre-trand-request';
 import { MarkupApi } from './markup-api';
 
@@ -61,6 +61,11 @@ export function pagiListeners(query) {
     }
 
     async function onFirstBtn(event) {
+      showPreloader();
+
+      setTimeout(() => {
+        hidePreloader();
+      }, 300);
       if (!event.target.classList.value.includes('first__btn')) {
         return;
       }
@@ -91,6 +96,11 @@ export function pagiListeners(query) {
     }
 
     async function onLastBtn(event) {
+      showPreloader();
+
+      setTimeout(() => {
+        hidePreloader();
+      }, 300);
       if (!event.target.classList.value.includes('last__btn')) {
         return;
       }
@@ -128,6 +138,11 @@ export function pagiListeners(query) {
     }
 
     async function onNextBtn(event) {
+      showPreloader();
+
+      setTimeout(() => {
+        hidePreloader();
+      }, 300);
       if (
         event.target.classList.value.includes('btn-pag-next') ||
         event.target.classList.value.includes('svg-next') ||
@@ -190,6 +205,11 @@ export function pagiListeners(query) {
     }
 
     async function onPrevBtn(event) {
+      showPreloader();
+
+      setTimeout(() => {
+        hidePreloader();
+      }, 300);
       if (
         event.target.classList.value.includes('btn-pag-prev') ||
         event.target.classList.value.includes('svg-prev') ||

@@ -1,10 +1,18 @@
+import { refs } from './refs';
+
+function showPreloader() {
+  refs.preloader.classList.remove('preloader-hidden');
+}
+
+function hidePreloader() {
+  refs.preloader.classList.add('preloader-hidden');
+}
+
+export { showPreloader, hidePreloader };
+
 window.addEventListener('DOMContentLoaded', () => {
-  let preloader = document.querySelector('#preloader');
-
-  preloader.classList.add('hide-preloader');
-  setTimeout(() => {
-  preloader.classList.add('preloader-hiden');
-  }, 950);
+  showPreloader();
+  window.setTimeout(() => {
+    hidePreloader();
+  }, 700);
 });
-
-let preloader = document.querySelector('#preloader');

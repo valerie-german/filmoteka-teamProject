@@ -70,15 +70,20 @@
 }
 
 #preloader.hide-preloader {
-  animation: hidePpreloader 1s;
+  animation: hide-preloader 1s;
 }
-#preloader.preloader-hiden {
+
+#preloader.preloader-hidden {
   display: none;
 }
 
 @keyframes hide-preloader {
   0% {
     opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
   }
   100% {
     opacity: 0;

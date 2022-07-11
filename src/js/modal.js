@@ -1,15 +1,17 @@
 const API_KEY = '83cba2c85d0df477852b094af9fbdddb';
 const axios = require('axios').default;
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { refs } from './refs';
-// const refs = {
-//     openModalFooter: document.querySelector('.footer-link'),
-//     closeModalBtnFooter: document.querySelector('.team-modal__close'),
-//     backdropFooter: document.querySelector('.team-modal'),
-//     galleryLink: document.querySelectorAll('.gallery-home'),
-//     btnModal: document.querySelector('.modal-close'),
-//     backdrop: document.querySelector('.backdrop')
-// }
+
+import { hidePreloader, showPreloader } from './preloader';
+
+const refs = {
+  openModalFooter: document.querySelector('.footer-link'),
+  closeModalBtnFooter: document.querySelector('.team-modal__close'),
+  backdropFooter: document.querySelector('.team-modal'),
+  galleryLink: document.querySelectorAll('.gallery-home'),
+  btnModal: document.querySelector('.modal-close'),
+  backdrop: document.querySelector('.backdrop'),
+};
 
 refs.openModalFooter.addEventListener('click', openModal);
 refs.closeModalBtnFooter.addEventListener('click', closeModal);
@@ -19,91 +21,89 @@ refs.galleryLink[0].addEventListener('click', onClickSearchAndRenderById);
 refs.btnModal.addEventListener('click', closeModalGallery);
 refs.backdrop.addEventListener('click', onClickBackdrop);
 
-
-
 function openModal() {
-    refs.backdropFooter.classList.remove('backdrop--hidden')
-    document.body.style.overflow = "hidden";
-    window.addEventListener('keydown', onEscKeyPress)
-  
-
-};
+  refs.backdropFooter.classList.remove('backdrop--hidden');
+  document.body.style.overflow = 'hidden';
+  window.addEventListener('keydown', onEscKeyPress);
+}
 function closeModal() {
-    refs.backdropFooter.classList.add('backdrop--hidden');
-    document.body.style.overflow = "";  
-    window.removeEventListener('keydown', onEscKeyPress)
+  refs.backdropFooter.classList.add('backdrop--hidden');
+  document.body.style.overflow = '';
+  window.removeEventListener('keydown', onEscKeyPress);
 }
 function onClickBackdrop(event) {
-    if (event.currentTarget === event.target) {
-           
-        closeModal();
-        closeModalGallery();
- }
-};
-
+  if (event.currentTarget === event.target) {
+    closeModal();
+    closeModalGallery();
+  }
+}
 
 function closeModalGallery() {
-    refs.backdrop.classList.add('backdrop--hidden');
-    document.body.style.overflow = "";  
+  refs.backdrop.classList.add('backdrop--hidden');
+  document.body.style.overflow = '';
 }
 
 function onEscKeyPress(event) {
-    if (event.code === 'Escape') {
-         closeModal();
+  if (event.code === 'Escape') {
+    closeModal();
     closeModalGallery();
-    }    
+  }
 }
 
-
-
 async function onClickSearchAndRenderById(event) {
-  refs.preloader.classList.remove('hide-preloader')
-  refs.preloader.classList.remove('preloader-hiden')
-  
-    if (event.target.nodeName === 'UL') {
-      return;
-    }
-  
-    window.addEventListener('keydown', onEscKeyPress )
-    refs.backdrop.classList.remove('backdrop--hidden')
-    document.body.style.overflow = "hidden";
-    refs.preloader.classList.add('hide-preloader')
-  
-    const movieId = event.target.closest('.gallery-item').dataset.id;
-    try {
-        const { data } = await getMovieById(movieId);
-        console.log(data)
-            renderMovieDetails(data);
-        createAndUpdateInstance(data);
-        refs.preloader.classList.add('preloader-hiden')
-        
-    } catch (error) {
-        console.log(error)
-    }
+  showPreloader();
+  if (event.target.nodeName === 'UL') {
+    return;
+  }
+  window.addEventListener('keydown', onEscKeyPress);
+  refs.backdrop.classList.remove('backdrop--hidden');
+  document.body.style.overflow = 'hidden';
+
+  const movieId = event.target.closest('.gallery-item').dataset.id;
+  try {
+    const { data } = await getMovieById(movieId);
+    hidePreloader();
+    console.log(data);
+    renderMovieDetails(data);
+    createAndUpdateInstance(data);
+  } catch (error) {
+    console.log(error);
+    hidePreloader();
+  }
 }
 
 async function getMovieById(id) {
-
-    return await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`);
-    
+  return await axios.get(
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
+  );
 }
 
-
 function renderMovieDetails(data) {
-  document.querySelector('.card-modal__container').innerHTML = "";
-  const defaultImgPath = "https://i.ibb.co/4gF0DzF/enjoy-min.jpg"
-  const imageURL = "https://image.tmdb.org/t/p/"
-  let markUp = "";
-  const { id, genres, title, original_title, overview, popularity, poster_path, vote_average, vote_count, release_date } = data;
+  document.querySelector('.card-modal__container').innerHTML = '';
+  const defaultImgPath = 'https://i.ibb.co/4gF0DzF/enjoy-min.jpg';
+  const imageURL = 'https://image.tmdb.org/t/p/';
+  let markUp = '';
+  const {
+    id,
+    genres,
+    title,
+    original_title,
+    overview,
+    popularity,
+    poster_path,
+    vote_average,
+    vote_count,
+    release_date,
+  } = data;
   // const obj = { id, genres, title, poster_path, vote_average, release_date };
   // const movie = new Movie(obj);
   // console.log(movie);
   // movie.addToWatch();
   // movie.addToQueue();
-  
+
   const genresToRender = genres.map(genre => genre.name).join(', ');
-    if(poster_path) {
-  markUp = `<div class="card-modal__img">
+  if (poster_path) {
+    markUp = `<div class="card-modal__img">
         <picture>
           <source
             srcset="
@@ -179,10 +179,7 @@ function renderMovieDetails(data) {
           </li>
         </ul>
       </div>`;
-    }
-  
-  
-  else {
+  } else {
     markUp = `<div class="card-modal__img">
         <img src="${defaultImgPath}"/>
       </div>
@@ -235,13 +232,24 @@ function renderMovieDetails(data) {
             <button class="modal-btn modal-btn--queued" type="button">add to queue</button>
           </li>
         </ul>
-      </div>`
-    }
+      </div>`;
+  }
   document.querySelector('.card-modal__container').innerHTML = markUp;
-
 }
-  
+
 function createAndUpdateInstance({
+  id,
+  genres,
+  poster_path,
+  genre_ids,
+  title,
+  name,
+  release_date,
+  vote_average,
+  original_title,
+  first_air_date,
+}) {
+  const obj = {
     id,
     genres,
     poster_path,
@@ -251,101 +259,136 @@ function createAndUpdateInstance({
     release_date,
     vote_average,
     original_title,
-    first_air_date }) {
-    const obj = {
-        id,
-        genres,
-        poster_path,
-        genre_ids,
-        title,
-        name,
-        release_date,
-        vote_average,
-        original_title,
-        first_air_date
-    };
-    const movieId = id;
-    const movie = new Movie(obj);
-    // console.log(id)
+    first_air_date,
+  };
+  const movieId = id;
+  const movie = new Movie(obj);
+  // console.log(id)
   // document.querySelector('.card-modal__container').innerHTML = markUp;
-  document.querySelector('.modal-btn--watched').addEventListener('click', addToWatch);
-  document.querySelector('.modal-btn--queued').addEventListener('click', addToQueue);
-  
-  
+  document
+    .querySelector('.modal-btn--watched')
+    .addEventListener('click', addToWatch);
+  document
+    .querySelector('.modal-btn--queued')
+    .addEventListener('click', addToQueue);
+
   function addToWatch() {
+    showPreloader();
     movie.addToWatch();
-    document.querySelector('.modal-btn--watched').textContent = "delete from watched";
-      document.querySelector('.modal-btn--watched').removeEventListener('click', addToWatch);
-      document.querySelector('.modal-btn--watched').addEventListener('click', removeMovieFromWatched);
-      Notify.success("Added to watch");
+    document.querySelector('.modal-btn--watched').textContent =
+      'delete from watched';
+    document
+      .querySelector('.modal-btn--watched')
+      .removeEventListener('click', addToWatch);
+    document
+      .querySelector('.modal-btn--watched')
+      .addEventListener('click', removeMovieFromWatched);
+    Notify.success('Added to watch');
+    setTimeout(() => {
+      hidePreloader();
+    }, 200);
   }
 
-    function addToQueue() {
-    movie.addToQueue()
-    document.querySelector('.modal-btn--queued').textContent = "delete from queue"; 
-        document.querySelector('.modal-btn--queued').removeEventListener('click', addToQueue);
-        document.querySelector('.modal-btn--queued').addEventListener('click', removeMovieFromQueued);
-        Notify.success("Added to queue")
+  function addToQueue() {
+    showPreloader();
+    movie.addToQueue();
+    document.querySelector('.modal-btn--queued').textContent =
+      'delete from queue';
+    document
+      .querySelector('.modal-btn--queued')
+      .removeEventListener('click', addToQueue);
+    document
+      .querySelector('.modal-btn--queued')
+      .addEventListener('click', removeMovieFromQueued);
+    Notify.success('Added to queue');
+    setTimeout(() => {
+      hidePreloader();
+    }, 200);
   }
 
   function removeMovieFromWatched() {
+    showPreloader();
     movie.removeFromWatched(movieId);
-    document.querySelector('.modal-btn--watched').removeEventListener('click', removeMovieFromWatched);
-    document.querySelector('.modal-btn--watched').addEventListener('click', addToWatch);
-      document.querySelector('.modal-btn--watched').textContent = "add to Watched";
-      Notify.success("Removed from watched")
-
+    document
+      .querySelector('.modal-btn--watched')
+      .removeEventListener('click', removeMovieFromWatched);
+    document
+      .querySelector('.modal-btn--watched')
+      .addEventListener('click', addToWatch);
+    document.querySelector('.modal-btn--watched').textContent =
+      'add to Watched';
+    Notify.success('Removed from watched');
+    setTimeout(() => {
+      hidePreloader();
+    }, 200);
   }
 
   function removeMovieFromQueued() {
+    showPreloader();
     movie.removeFromQueued(movieId);
-    document.querySelector('.modal-btn--queued').removeEventListener('click', removeMovieFromQueued);
-    document.querySelector('.modal-btn--queued').addEventListener('click', addToQueue);
-      document.querySelector('.modal-btn--queued').textContent = "add to queue";
-      Notify.success("Removed from queued")
 
+    document
+      .querySelector('.modal-btn--queued')
+      .removeEventListener('click', removeMovieFromQueued);
+    document
+      .querySelector('.modal-btn--queued')
+      .addEventListener('click', addToQueue);
+    document.querySelector('.modal-btn--queued').textContent = 'add to queue';
+    Notify.success('Removed from watched');
+    setTimeout(() => {
+      hidePreloader();
+    }, 200);
   }
 
   if (movie.inWatched(movieId)) {
-    document.querySelector('.modal-btn--watched').textContent = "delete from watched";
-    document.querySelector('.modal-btn--watched').removeEventListener('click', addToWatch)
-    document.querySelector('.modal-btn--watched').addEventListener('click', removeMovieFromWatched)
+    document.querySelector('.modal-btn--watched').textContent =
+      'delete from watched';
+    document
+      .querySelector('.modal-btn--watched')
+      .removeEventListener('click', addToWatch);
+    document
+      .querySelector('.modal-btn--watched')
+      .addEventListener('click', removeMovieFromWatched);
   }
 
   if (movie.inQueued(movieId)) {
-    document.querySelector('.modal-btn--queued').textContent = "delete from queue"; 
+    document.querySelector('.modal-btn--queued').textContent =
+      'delete from queue';
 
-    document.querySelector('.modal-btn--queued').removeEventListener('click', addToQueue)
-    document.querySelector('.modal-btn--queued').addEventListener('click', removeMovieFromQueued)
+    document
+      .querySelector('.modal-btn--queued')
+      .removeEventListener('click', addToQueue);
+    document
+      .querySelector('.modal-btn--queued')
+      .addEventListener('click', removeMovieFromQueued);
   }
 }
-    
 
 class Movie {
-    constructor({ id,
-        poster_path,
-          genres,
-          genre_ids,
-          title,
-          name,
-          release_date,
-          vote_average,
-          original_title,
-          first_air_date } = {}) {
-        
-        this.id = id;
-        this.poster_path = poster_path;
-        this.genres = genres;
-        this.genre_ids = genre_ids;
-        this.title = title;
-        this.name = name;
-        this.vote_average = vote_average;
-        this.release_date = release_date;
-        this.original_title = original_title;
-        this.first_air_date = first_air_date;
+  constructor({
+    id,
+    poster_path,
+    genres,
+    genre_ids,
+    title,
+    name,
+    release_date,
+    vote_average,
+    original_title,
+    first_air_date,
+  } = {}) {
+    this.id = id;
+    this.poster_path = poster_path;
+    this.genres = genres;
+    this.genre_ids = genre_ids;
+    this.title = title;
+    this.name = name;
+    this.vote_average = vote_average;
+    this.release_date = release_date;
+    this.original_title = original_title;
+    this.first_air_date = first_air_date;
+  }
 
-    }
-    
   addToWatch() {
     let movies = [];
     movies = JSON.parse(localStorage.getItem('watchedMovies')) || [];
@@ -359,32 +402,38 @@ class Movie {
     movies.push(this);
     localStorage.setItem('queuedMovies', JSON.stringify(movies));
   }
-  
+
   inWatched(movieId) {
     try {
-            if (JSON.parse(localStorage.getItem('watchedMovies')).find(item => item.id === movieId)) {
-                return true;
-            }
-        }
-        catch (error) {
-            console.log(error)
-        }
+      if (
+        JSON.parse(localStorage.getItem('watchedMovies')).find(
+          item => item.id === movieId
+        )
+      ) {
+        return true;
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-    inQueued(movieId) {
-        try {
-            if (JSON.parse(localStorage.getItem('queuedMovies')).find(item => item.id === movieId)) {
-                return true;
-            }
-        }
-        catch (error) {
-            console.log(error)
-        }
+  inQueued(movieId) {
+    try {
+      if (
+        JSON.parse(localStorage.getItem('queuedMovies')).find(
+          item => item.id === movieId
+        )
+      ) {
+        return true;
+      }
+    } catch (error) {
+      console.log(error);
     }
+  }
 
   removeFromWatched(movieId) {
-     let movies = JSON.parse(localStorage.getItem("watchedMovies"))
-        let i =movies.findIndex(movie=>movie.id===movieId);
+    let movies = JSON.parse(localStorage.getItem('watchedMovies'));
+    let i = movies.findIndex(movie => movie.id === movieId);
     if (i !== -1) {
       movies.splice(i, 1);
       localStorage.setItem('watchedMovies', JSON.stringify(movies));
@@ -392,8 +441,8 @@ class Movie {
   }
 
   removeFromQueued(movieId) {
-let movies = JSON.parse(localStorage.getItem("queuedMovies"))
-        let i =movies.findIndex(movie=>movie.id===movieId);
+    let movies = JSON.parse(localStorage.getItem('queuedMovies'));
+    let i = movies.findIndex(movie => movie.id === movieId);
     if (i !== -1) {
       movies.splice(i, 1);
       localStorage.setItem('queuedMovies', JSON.stringify(movies));
