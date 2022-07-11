@@ -80,7 +80,7 @@ async function getMovieById(id) {
 
 function renderMovieDetails(data) {
   document.querySelector('.card-modal__container').innerHTML = '';
-  const DEFAULT_IMG_PATH = 'https://i.ibb.co/4gF0DzF/enjoy-min.jpg';
+  const DEFAULT_IMG_PATH = 'https://i.ibb.co/nBhDC2Z/enjoy-min-def.jpg';
   const imageURL = 'https://image.tmdb.org/t/p/';
   let markUp = '';
   let imageMarkup = '';
@@ -131,7 +131,7 @@ function renderMovieDetails(data) {
         </picture>`;    
     }
   else {
-    imageMarkup = `<img src="${DEFAULT_IMG_PATH}"/>`;
+    imageMarkup = `<img alt="${original_title}" src="${DEFAULT_IMG_PATH}"/>`;
   }
   markUp = `<div class="card-modal__img">
         ${imageMarkup}

@@ -30,3 +30,4 @@ function searchByTranding() {
     defaultGalleyRender();
   }
 }
+
