@@ -31,7 +31,7 @@ function markupOfSavedFilms() {
 
   let markup = viewedFilms
 
-    .map(({ id, poster_path, title, release_date, vote_average, genres = {} }) => {
+    .map(({ id, poster_path, title, release_date, vote_average, genres }) => {
       let date = new Date(release_date);
       let year = date.getFullYear();
       const genre = genres.map(genre => genre.name).join(', ');
