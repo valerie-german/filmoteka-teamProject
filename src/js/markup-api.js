@@ -87,7 +87,7 @@ export class MarkupApi {
                     media="(min-width: 320px)"
                 />
                 <img
-                    src="${imageURL}original${poster_path}"
+                    src="${imageURL}original${poster_path}" loading="lazy"
                     alt="${original_title}"
                     class="film-card__image"
                     

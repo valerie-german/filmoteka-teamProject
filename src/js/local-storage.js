@@ -179,6 +179,7 @@ function markupOfFilmsFromQueue() {
               />
               <img
                   src="${imageURL || defaultImgPath}original${poster_path}"
+                  loading="lazy"
                   alt="${title}"
                   class="film-card__image"
               />
