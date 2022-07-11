@@ -133,7 +133,17 @@ li {
   }
 }
 
-.library-information {
+.library-information--saved {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.33;
+
+  text-align: center;
+
+  text-transform: uppercase;
+}
+
+.library-information--queue {
   font-weight: 500;
   font-size: 20px;
   line-height: 1.33;

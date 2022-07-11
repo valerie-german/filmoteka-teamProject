@@ -10,6 +10,7 @@ import { searchFilms } from './js/search-films';
 import { PaginApi } from './js/pagination-api';
 import { PaginApi } from './js/pagination-api';
 import { MarkupApi } from './js/markup-api';
+import { showPreloader, hidePreloader } from './js/preloader';
 
 const markupApi = new MarkupApi();
 

@@ -3,16 +3,17 @@ import ApiRequest from './genre-trand-request';
 import { refs } from './refs';
 import { PaginApi } from './pagination-api';
 import { renderPagination } from './render-pagination';
+import { showPreloader, hidePreloader } from './preloader';
 const paginationApi = new PaginApi();
 const markupApi = new MarkupApi();
 const apiRequest = new ApiRequest();
-
 
 export function searchFilms() {
   refs.form.addEventListener('submit', onSearch);
 
   async function onSearch(e) {
     e.preventDefault();
+    showPreloader();
     markupApi.deleteMarkup();
     paginationApi.deleteMarkup();
 
@@ -23,17 +24,19 @@ export function searchFilms() {
       form.elements.searchQuery.value
     );
 
-if (refs.input.value === '' || data.length === 0) {
-      return refs.notification.classList.remove("notify-is-hidden");
+    if (refs.input.value === '' || data.length === 0) {
+      hidePreloader();
+      return refs.notification.classList.remove('notify-is-hidden');
     } else {
-      refs.notification.classList.add("notify-is-hidden");
+      hidePreloader();
+      refs.notification.classList.add('notify-is-hidden');
       markupApi.renderMarkUp(data);
       paginationApi.query = await form.elements.searchQuery.value;
       renderPagination(
         apiRequest.totalPages,
         refs.pagination,
         form.elements.searchQuery.value
-        );
+      );
     }
   }
 }

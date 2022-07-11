@@ -1,5 +1,6 @@
 import { refs } from './refs';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { showPreloader, hidePreloader } from './preloader';
 
 const galleryList = refs.gallery;
 const currentLocation = window.location.pathname;
@@ -9,26 +10,44 @@ const filmsForWatching = JSON.parse(localStorage.getItem('queuedMovies'));
 if (currentLocation === '/my-library.html') {
   window.addEventListener('DOMContentLoaded', () => {
     refs.watched.classList.add('is-active');
-    markupOfSavedFilms();
     refs.watched.addEventListener('click', getSavedFilms);
     refs.queue.addEventListener('click', getFilmsFromQueue);
+    if (viewedFilms !== null) {
+      markupOfSavedFilms();
+    }
   });
 }
 
-if (viewedFilms !== null) {
-  refs.libraryMassage.classList.add('visually-hidden');
-} else {
-  refs.libraryMassage.classList.remove('visually-hidden');
-}
+viewedFilms === null && refs.libraryMassage.classList.remove('visually-hidden');
 
 function getSavedFilms() {
   clearGallery();
-  markupOfSavedFilms();
+  showPreloader();
+  if (viewedFilms === null) {
+    refs.queueInformation.classList.add('queue-hidden');
+    refs.libraryMassage.classList.remove('visually-hidden');
+  } else {
+    markupOfSavedFilms();
+  }
+
+  setTimeout(() => {
+    hidePreloader();
+  }, 600);
 }
 
 function getFilmsFromQueue() {
+  refs.watched.classList.remove('is-active');
   clearGallery();
-  markupOfFilmsFromQueue();
+  showPreloader();
+  if (filmsForWatching === null) {
+    refs.queueInformation.classList.remove('queue-hidden');
+    refs.libraryMassage.classList.add('visually-hidden');
+  } else {
+    markupOfFilmsFromQueue();
+  }
+  setTimeout(() => {
+    hidePreloader();
+  }, 600);
 }
 
 function markupOfSavedFilms() {
@@ -36,7 +55,6 @@ function markupOfSavedFilms() {
   const imageURL = 'https://image.tmdb.org/t/p/';
 
   let markup = viewedFilms
-
     .map(({ id, poster_path, title, release_date, vote_average, genres }) => {
       let date = new Date(release_date);
       let year = date.getFullYear();
