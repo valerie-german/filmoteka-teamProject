@@ -65,7 +65,6 @@ export class PaginApi {
           <button class="pagination-btns__btn dots__btn" disabled="true">...</button>
         </li>
         `);
-      console.log(this.isLastPage);
       if (totalPage > 6) {
         lastPageBtn = 6;
       }
