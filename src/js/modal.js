@@ -80,9 +80,11 @@ async function getMovieById(id) {
 
 function renderMovieDetails(data) {
   document.querySelector('.card-modal__container').innerHTML = '';
-  const defaultImgPath = 'https://i.ibb.co/4gF0DzF/enjoy-min.jpg';
+  const DEFAULT_IMG_PATH = 'https://i.ibb.co/4gF0DzF/enjoy-min.jpg';
   const imageURL = 'https://image.tmdb.org/t/p/';
   let markUp = '';
+  let imageMarkup = '';
+  
   const {
     id,
     genres,
@@ -103,8 +105,7 @@ function renderMovieDetails(data) {
 
   const genresToRender = genres.map(genre => genre.name).join(', ');
   if (poster_path) {
-    markUp = `<div class="card-modal__img">
-        <picture>
+    imageMarkup = `<picture>
           <source
             srcset="
               ${imageURL}w780${poster_path}    1x,
@@ -127,7 +128,13 @@ function renderMovieDetails(data) {
             media="(min-width: 320px)"
           />
           <img src="${imageURL}original${poster_path}" />
-        </picture>
+        </picture>`;    
+    }
+  else {
+    imageMarkup = `<img src="${DEFAULT_IMG_PATH}"/>`;
+  }
+  markUp = `<div class="card-modal__img">
+        ${imageMarkup}
       </div>
       <div class="modal-meta">
         <h2 class="modal-heading">${title}</h2>
@@ -179,77 +186,13 @@ function renderMovieDetails(data) {
           </li>
         </ul>
       </div>`;
-  } else {
-    markUp = `<div class="card-modal__img">
-        <img src="${defaultImgPath}"/>
-      </div>
-      <div class="modal-meta">
-        <h2 class="modal-heading">${title}</h2>
-        <div class="meta-container">
-          <ul class="list feature__list">
-            <li class="feature__item">
-              <span class="meta__feature">Vote / Votes</span>
-            </li>
-            <li class="feature__item">
-              <span class="meta__feature">Popularity</span>
-            </li>
-            <li class="feature__item">
-              <span class="meta__feature">Original Title</span>
-            </li>
-            <li class="feature__item">
-              <span class="meta__feature">Genre</span>
-            </li>
-          </ul>
-
-          <ul class="list value__list">
-            <li class="value__item">
-              <div>
-                <span class="vote-votes active">${vote_average}</span> /
-                <span class="vote-votes">${vote_count}</span>
-              </div>
-            </li>
-            <li class="value__item">
-              <span class="meta__value">${popularity}</span>
-            </li>
-            <li class="value__item">
-              <span class="meta__value original-title">${original_title}</span>
-            </li>
-            <li class="value__item">
-              <span class="meta__value">${genresToRender}</span>
-            </li>
-          </ul>
-        </div>
-
-        <h3 class="modal-meta__title">About</h3>
-        <p class="modal-meta__discription">
-          ${overview}
-        </p>
-        <ul class="list modal-btn__list">
-          <li class="modal-btn__item">
-            <button class="modal-btn modal-btn--watched" type="button">add to Watched</button>
-          </li>
-          <li class="modal-btn__item">
-            <button class="modal-btn modal-btn--queued" type="button">add to queue</button>
-          </li>
-        </ul>
-      </div>`;
-  }
+  
   document.querySelector('.card-modal__container').innerHTML = markUp;
 }
 
-function createAndUpdateInstance({
-  id,
-  genres,
-  poster_path,
-  genre_ids,
-  title,
-  name,
-  release_date,
-  vote_average,
-  original_title,
-  first_air_date,
-}) {
-  const obj = {
+function createAndUpdateInstance(obj = {})  
+ {
+  const {
     id,
     genres,
     poster_path,
@@ -260,7 +203,7 @@ function createAndUpdateInstance({
     vote_average,
     original_title,
     first_air_date,
-  };
+  } = obj;
   const movieId = id;
   const movie = new Movie(obj);
   // console.log(id)
@@ -308,7 +251,7 @@ function createAndUpdateInstance({
 
   function removeMovieFromWatched() {
     showPreloader();
-    movie.removeFromWatched(movieId);
+    movie.removeFromStorage(movieId, 'watchedMovies');
     document
       .querySelector('.modal-btn--watched')
       .removeEventListener('click', removeMovieFromWatched);
@@ -325,7 +268,7 @@ function createAndUpdateInstance({
 
   function removeMovieFromQueued() {
     showPreloader();
-    movie.removeFromQueued(movieId);
+    movie.removeFromStorage(movieId, 'queuedMovies');
 
     document
       .querySelector('.modal-btn--queued')
@@ -339,6 +282,7 @@ function createAndUpdateInstance({
       hidePreloader();
     }, 200);
   }
+
 
   if (movie.inWatched(movieId)) {
     document.querySelector('.modal-btn--watched').textContent =
@@ -393,14 +337,14 @@ class Movie {
     let movies = [];
     movies = JSON.parse(localStorage.getItem('watchedMovies')) || [];
     movies.push(this);
-    localStorage.setItem('watchedMovies', JSON.stringify(movies));
+    localStorage.setItem('watchedMovies', JSON.stringify(movies.reverse()));
   }
 
   addToQueue() {
     let movies = [];
     movies = JSON.parse(localStorage.getItem('queuedMovies')) || [];
     movies.push(this);
-    localStorage.setItem('queuedMovies', JSON.stringify(movies));
+    localStorage.setItem('queuedMovies', JSON.stringify(movies.reverse()));
   }
 
   inWatched(movieId) {
@@ -431,21 +375,12 @@ class Movie {
     }
   }
 
-  removeFromWatched(movieId) {
-    let movies = JSON.parse(localStorage.getItem('watchedMovies'));
+  removeFromStorage(movieId, storageName) {
+    let movies = JSON.parse(localStorage.getItem(storageName));
     let i = movies.findIndex(movie => movie.id === movieId);
     if (i !== -1) {
       movies.splice(i, 1);
-      localStorage.setItem('watchedMovies', JSON.stringify(movies));
-    }
-  }
-
-  removeFromQueued(movieId) {
-    let movies = JSON.parse(localStorage.getItem('queuedMovies'));
-    let i = movies.findIndex(movie => movie.id === movieId);
-    if (i !== -1) {
-      movies.splice(i, 1);
-      localStorage.setItem('queuedMovies', JSON.stringify(movies));
+      localStorage.setItem(`${storageName}`, JSON.stringify(movies));
     }
   }
 }
