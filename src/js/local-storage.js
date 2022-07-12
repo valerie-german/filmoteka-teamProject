@@ -7,7 +7,7 @@ const galleryList = refs.gallery;
 const currentLocation = window.location.pathname;
 const viewedFilms = watchedF();
 const filmsForWatching = queueF();
-console.log(watchedF);
+//console.log(viewedFilms);
 
 Notify.init({
   width: '200px',
@@ -21,30 +21,39 @@ Notify.init({
 if (currentLocation === '/my-library.html') {
   window.addEventListener('DOMContentLoaded', () => {
     refs.watched.classList.add('is-active');
-    refs.watched.addEventListener('click', getSavedFilms);
-    refs.queue.addEventListener('click', getFilmsFromQueue);
-    if (viewedFilms !== null) {
-      markupOfSavedFilms();
-    }
+    refs.queue.classList.remove('is-active');
+    getFromWatched();
+
+    refs.watched.addEventListener('click', () => {
+    refs.queue.classList.remove('is-active');
+    refs.watched.classList.add('is-active');
+    getFromWatched();
+});
+ 
+
+  refs.queue.addEventListener('click', () => {
+  refs.watched.classList.remove('is-active');
+    refs.queue.classList.add('is-active');
+    getFromQueue();
+  });
+    
+    
   });
 }
 
-viewedFilms === null && refs.libraryMassage.classList.remove('visually-hidden');
-
-function getSavedFilms() {
-  refs.queue.classList.remove('is-active');
+function getFromWatched() {
   clearGallery();
 
   try {
-    if (viewedFilms === null) {
-      refs.queueInformation.classList.add('queue-hidden');
-      refs.libraryMassage.classList.remove('visually-hidden');
-    } else {
+    if (viewedFilms.length===null) {
+       markupNoContent();
+    } else  {
       showPreloader();
-      markupOfSavedFilms();
+      markupOfSavedFilms(viewedFilms);
     }
+    
   } catch (error) {
-    Notify.failure(error);
+      markupNoContent();
   }
 
   setTimeout(() => {
@@ -52,21 +61,18 @@ function getSavedFilms() {
   }, 600);
 }
 
-function getFilmsFromQueue() {
-  refs.watched.classList.remove('is-active');
-  refs.queue.classList.add('is-active');
-  clearGallery();
-
+function getFromQueue() {
+   clearGallery();
   try {
-    if (filmsForWatching === null) {
-      refs.queueInformation.classList.remove('queue-hidden');
-      refs.libraryMassage.classList.add('visually-hidden');
-    } else {
+    if (filmsForWatching.length===null) {
+         markupNoContent();
+    } else  {
       showPreloader();
-      markupOfFilmsFromQueue();
+      markupOfSavedFilms(filmsForWatching);
     }
+    
   } catch (error) {
-    Notify.failure(error);
+      markupNoContent();
   }
 
   setTimeout(() => {
@@ -74,11 +80,16 @@ function getFilmsFromQueue() {
   }, 600);
 }
 
-function markupOfSavedFilms() {
+function markupNoContent() {
+   let markup =`<li class="gallery-item"><img src="../no-content.jpg" alt="nothing is here"></li>`;
+   refs.gallery.insertAdjacentHTML('beforeend', markup);
+ }
+
+function markupOfSavedFilms(array) {
   const defaultImgPath = 'https://i.ibb.co/4gF0DzF/enjoy-min.jpg';
   const imageURL = 'https://image.tmdb.org/t/p/';
 
-  let markup = viewedFilms
+  let markup = array
 
     .map(
       ({ id, poster_path, title, release_date, vote_average, genres } = {}) => {
@@ -140,72 +151,7 @@ function markupOfSavedFilms() {
       }
     )
     .join('');
-  galleryList.insertAdjacentHTML('beforeend', markup);
-}
-
-function markupOfFilmsFromQueue() {
-  refs.watched.classList.remove('is-active');
-
-  const defaultImgPath = 'https://i.ibb.co/4gF0DzF/enjoy-min.jpg';
-  const imageURL = 'https://image.tmdb.org/t/p/';
-
-  let markup = filmsForWatching
-    .map(
-      ({ id, poster_path, title, release_date, vote_average, genres } = {}) => {
-        let date = new Date(release_date);
-        let year = date.getFullYear();
-        const genre = genres.map(genre => genre.name).join(', ');
-
-        return `
-        <li class="gallery-item" data-id="${id}">
-        <a class="gallery__link" href="" data-action="" onclick="return false">
-            <div class="film-card">
-           <div class="film-card__image">
-              <picture>
-              <source
-                  srcset="
-                  ${imageURL || defaultImgPath}w780${poster_path}     1x,
-                  ${imageURL || defaultImgPath}original${poster_path} 2x
-                  "
-                  media="(min-width: 1024px)"
-              />
-              <source
-                  srcset="
-                  ${imageURL || defaultImgPath}w500${poster_path} 1x,
-                  ${imageURL || defaultImgPath}w780${poster_path} 2x
-                  "
-                  media="(min-width: 768px)"
-              />
-              <source
-                  srcset="
-                  ${imageURL || defaultImgPath}w185${poster_path} 1x,
-                  ${imageURL || defaultImgPath}w500${poster_path} 2x
-                  "
-                  media="(min-width: 320px)"
-              />
-              <img
-                  src="${imageURL || defaultImgPath}original${poster_path}"
-                  loading="lazy"
-                  alt="${title}"
-                  class="film-card__image"
-              />
-              </picture>
-          </div>
-
-            <div class="card">
-                <p class="card__name">${title}</p>
-                <div class="card__text">
-                <p class="card__genre">${genre} | <span class="card__year">${year}</span></p>
-                <p class="card__rate">${vote_average}</p>
-                </div>
-            </div>
-            </div>
-        </a>
-        </li>`;
-      }
-    )
-    .join('');
-  galleryList.insertAdjacentHTML('beforeend', markup);
+  refs.gallery.insertAdjacentHTML('beforeend', markup);
 }
 
 function clearGallery() {

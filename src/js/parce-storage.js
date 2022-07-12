@@ -13,14 +13,14 @@ const watchedF = () => {
   try {
     return JSON.parse(localStorage.getItem('watchedMovies'));
   } catch (error) {
-    Notify.failure(error);
+    Notify.failure(error, "W");
   }
 };
 const queueF = () => {
   try {
     return JSON.parse(localStorage.getItem('queuedMovies'));
   } catch (error) {
-    Notify.failure(error);
+    Notify.failure(error, "Q");
   }
 };
 

@@ -264,12 +264,13 @@ function createAndUpdateInstance(obj = {})
     setTimeout(() => {
       hidePreloader();
     }, 200);
+    movie.removeItemFromGallery('gallery-home-list', movieId);
   }
 
   function removeMovieFromQueued() {
     showPreloader();
     movie.removeFromStorage(movieId, 'queuedMovies');
-
+    
     document
       .querySelector('.modal-btn--queued')
       .removeEventListener('click', removeMovieFromQueued);
@@ -277,16 +278,17 @@ function createAndUpdateInstance(obj = {})
       .querySelector('.modal-btn--queued')
       .addEventListener('click', addToQueue);
     document.querySelector('.modal-btn--queued').textContent = 'add to queue';
-    Notify.success('Removed from watched');
+    Notify.success('Removed from queued');
     setTimeout(() => {
       hidePreloader();
     }, 200);
+    movie.removeItemFromGallery('gallery-home-list', movieId);
   }
 
 
   if (movie.inWatched(movieId)) {
     document.querySelector('.modal-btn--watched').textContent =
-      'delete from watched';
+      'remove from watched';
     document
       .querySelector('.modal-btn--watched')
       .removeEventListener('click', addToWatch);
@@ -297,7 +299,7 @@ function createAndUpdateInstance(obj = {})
 
   if (movie.inQueued(movieId)) {
     document.querySelector('.modal-btn--queued').textContent =
-      'delete from queue';
+      'remove from queue';
 
     document
       .querySelector('.modal-btn--queued')
@@ -382,5 +384,11 @@ class Movie {
       movies.splice(i, 1);
       localStorage.setItem(`${storageName}`, JSON.stringify(movies));
     }
+  }
+
+
+  removeItemFromGallery(galleryClass, id) {
+    let item = document.querySelector(`.${galleryClass} li[data-id='${id}']`);
+    item.remove();
   }
 }
