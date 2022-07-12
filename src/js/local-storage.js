@@ -35,8 +35,8 @@ if (currentLocation === '/my-library.html') {
   });
     
     refs.watched.addEventListener('click', () => {
-    refs.queue.classList.remove('is-active');
     refs.watched.classList.add('is-active');
+    refs.queue.classList.remove('is-active');
     getFromWatched();
    
     
@@ -56,7 +56,8 @@ function getFromWatched() {
     }
     
   } catch (error) {
-      markupNoContent();
+    console.log("22222");
+      //markupNoContent();
   }
 
   setTimeout(() => {
@@ -85,7 +86,7 @@ function getFromQueue() {
 
 
 function markupNoContent() {
-  //clearGallery();
+  clearGallery();
  // let markup = `<img src="https://i.ibb.co/GWYydks/no-content.jpg" alt="nothing is here">`;
   let markup =`<div class="slumb"></div>`;
   noContentUl.innerHTML = markup;
@@ -94,6 +95,8 @@ function markupNoContent() {
  }
 
 function markupOfSavedFilms(array) {
+
+  
   const defaultImgPath = 'https://i.ibb.co/4gF0DzF/enjoy-min.jpg';
   const imageURL = 'https://image.tmdb.org/t/p/';
 
