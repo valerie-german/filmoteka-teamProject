@@ -25,35 +25,30 @@ if (currentLocation === '/my-library.html') {
     getFromWatched();
 
     refs.watched.addEventListener('click', () => {
-    refs.queue.classList.remove('is-active');
-    refs.watched.classList.add('is-active');
-    getFromWatched();
-});
- 
+      refs.queue.classList.remove('is-active');
+      refs.watched.classList.add('is-active');
+      getFromWatched();
+    });
 
-  refs.queue.addEventListener('click', () => {
-  refs.watched.classList.remove('is-active');
-    refs.queue.classList.add('is-active');
-    getFromQueue();
-  });
-    
-    
+    refs.queue.addEventListener('click', () => {
+      refs.watched.classList.remove('is-active');
+      refs.queue.classList.add('is-active');
+      getFromQueue();
+    });
   });
 }
 
 function getFromWatched() {
   clearGallery();
-
   try {
-    if (viewedFilms.length===null) {
-       markupNoContent();
-    } else  {
+    if (viewedFilms.length === 0) {
+      markupNoContent();
+    } else {
       showPreloader();
       markupOfSavedFilms(viewedFilms);
     }
-    
   } catch (error) {
-      markupNoContent();
+    markupNoContent();
   }
 
   setTimeout(() => {
@@ -62,17 +57,16 @@ function getFromWatched() {
 }
 
 function getFromQueue() {
-   clearGallery();
+  clearGallery();
   try {
-    if (filmsForWatching.length===null) {
-         markupNoContent();
-    } else  {
+    if (filmsForWatching.length === 0) {
+      markupNoContent();
+    } else {
       showPreloader();
       markupOfSavedFilms(filmsForWatching);
     }
-    
   } catch (error) {
-      markupNoContent();
+    markupNoContent();
   }
 
   setTimeout(() => {
@@ -80,10 +74,10 @@ function getFromQueue() {
   }, 600);
 }
 
-function markupNoContent() {
-   let markup =`<li class="gallery-item"><img src="../no-content.jpg" alt="nothing is here"></li>`;
-   refs.gallery.insertAdjacentHTML('beforeend', markup);
- }
+export function markupNoContent() {
+  let markup = `<li class="gallery-item"><img src="../no-content.jpg" alt="nothing is here"></li>`;
+  refs.gallery.insertAdjacentHTML('beforeend', markup);
+}
 
 function markupOfSavedFilms(array) {
   const defaultImgPath = 'https://i.ibb.co/4gF0DzF/enjoy-min.jpg';
@@ -128,10 +122,9 @@ function markupOfSavedFilms(array) {
                   class="film-card__image"
               />
               </picture>`;
+        } else {
+          imageMarkup = `<img class="default-img" loading="lazy" alt="${original_title}" src="${DEFAULT_IMG_PATH}"/>`;
         }
-        else { 
-              imageMarkup = `<img class="default-img" loading="lazy" alt="${original_title}" src="${DEFAULT_IMG_PATH}"/>`;
-            }
 
         return `
         <li class="gallery-item" data-id="${id}">

@@ -1,6 +1,7 @@
 const API_KEY = '83cba2c85d0df477852b094af9fbdddb';
 const axios = require('axios').default;
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { markupNoContent } from './local-storage';
 
 import { hidePreloader, showPreloader } from './preloader';
 
@@ -26,7 +27,7 @@ function openModal() {
   document.body.style.overflow = 'hidden';
   window.addEventListener('keydown', onEscKeyPress);
 }
-function closeModal() {
+export function closeModal() {
   refs.backdropFooter.classList.add('backdrop--hidden');
   document.body.style.overflow = '';
   window.removeEventListener('keydown', onEscKeyPress);
@@ -253,6 +254,8 @@ function createAndUpdateInstance(obj = {}) {
   function removeMovieFromWatched() {
     showPreloader();
     movie.removeFromStorage(movieId, 'watchedMovies');
+    markupNoContent();
+    closeModalGallery();
     document
       .querySelector('.modal-btn--watched')
       .removeEventListener('click', removeMovieFromWatched);
@@ -271,6 +274,8 @@ function createAndUpdateInstance(obj = {}) {
   function removeMovieFromQueued() {
     showPreloader();
     movie.removeFromStorage(movieId, 'queuedMovies');
+    markupNoContent();
+    closeModalGallery();
 
     document
       .querySelector('.modal-btn--queued')
