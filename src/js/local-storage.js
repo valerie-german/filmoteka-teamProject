@@ -7,7 +7,7 @@ const galleryList = refs.gallery;
 const currentLocation = window.location.pathname;
 const viewedFilms = watchedF();
 const filmsForWatching = queueF();
-//console.log(viewedFilms);
+const noContentUl = document.querySelector('.gallery-home');
 
 Notify.init({
   width: '200px',
@@ -81,8 +81,8 @@ function getFromQueue() {
 }
 
 function markupNoContent() {
-   let markup =`<li class="gallery-item"><img src="../no-content.jpg" alt="nothing is here"></li>`;
-   refs.gallery.insertAdjacentHTML('beforeend', markup);
+   let markup =`<img src="./no-content.jpg" alt="nothing is here">`;
+   noContentUl.insertAdjacentHTML('beforeend', markup);
  }
 
 function markupOfSavedFilms(array) {
