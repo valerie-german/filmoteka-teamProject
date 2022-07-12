@@ -182,7 +182,7 @@ export function pagiListeners(query) {
           Number(paginationApi.refs.changingBtns[5].textContent) ===
           apiRequest.totalPages
         ) {
-          paginationApi.refs.lastBtn.setAttribute('disabled', 'true');
+          // paginationApi.refs.lastBtn.setAttribute('disabled', 'true');
           paginationApi.isLastForDisabled = true;
         }
       }

@@ -144,6 +144,17 @@ export class PaginApi {
       this.refs.lastBtn.classList.add('visually-hidden');
       this.refs.btnNext.classList.add('visually-hidden');
     }
+
+    if (this.refs.changingBtns[0].textContent === '1') {
+      this.refs.btnPrev.setAttribute('disabled', 'true');
+    }
+
+    if (
+      Number(this.refs.changingBtns[0].textContent) ===
+      this.refs.lastBtn.textContent - 5
+    ) {
+      this.refs.btnNext.setAttribute('disabled', 'true');
+    }
   }
 
   getRefs() {
