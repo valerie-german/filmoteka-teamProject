@@ -38,7 +38,6 @@ li {
 
 .gallery-library-list {
   max-width: 280px;
-  // margin-left: 10px;
   margin-left: auto;
   margin-right: auto;
 
@@ -206,3 +205,20 @@ li {
 }
 
 
+.slumb{
+  width:auto;
+  height:500px;
+  background-image: url('https://i.ibb.co/myf5Ynx/no-content-img-mob-1.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  @media screen and (min-width: 768px) {
+      background-image: url('https://i.ibb.co/GWYydks/no-content.jpg');
+      height: 470px;
+    }
+  @media screen and (min-width: 1280px) {
+    
+  height: 810px;
+  }
+
+}
