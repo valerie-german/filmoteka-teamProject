@@ -2,6 +2,7 @@ const API_KEY = '83cba2c85d0df477852b094af9fbdddb';
 const axios = require('axios').default;
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
+
 import { hidePreloader, showPreloader } from './preloader';
 
 const refs = {
@@ -11,6 +12,7 @@ const refs = {
   galleryLink: document.querySelectorAll('.gallery-home'),
   btnModal: document.querySelector('.modal-close'),
   backdrop: document.querySelector('.backdrop'),
+  galleryHome: document.querySelector('.gallery-home'),
 };
 
 refs.openModalFooter.addEventListener('click', openModal);
@@ -20,6 +22,7 @@ refs.backdropFooter.addEventListener('click', onClickBackdrop);
 refs.galleryLink[0].addEventListener('click', onClickSearchAndRenderById);
 refs.btnModal.addEventListener('click', closeModalGallery);
 refs.backdrop.addEventListener('click', onClickBackdrop);
+
 
 function openModal() {
   refs.backdropFooter.classList.remove('backdrop--hidden');
@@ -270,6 +273,7 @@ function createAndUpdateInstance(obj = {})
   function removeMovieFromQueued() {
     showPreloader();
     movie.removeFromStorage(movieId, 'queuedMovies');
+    //nocontent div 
     
     document
       .querySelector('.modal-btn--queued')

@@ -2,6 +2,7 @@ export const refs = {
   form: document.querySelector('.js-search-form'),
   input: document.querySelector('.js-input'),
   gallery: document.querySelector('.gallery-home-list'),
+  galleryHome: document.querySelector('.gallery-home'),
   modalWindow: document.querySelector('.backdrop'),
   watched: document.querySelector('[data-action="watched"]'),
   queue: document.querySelector('[data-action="queue"]'),

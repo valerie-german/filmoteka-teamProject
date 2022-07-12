@@ -5,9 +5,6 @@ import { watchedF, queueF } from './parce-storage';
 
 const galleryList = refs.gallery;
 const currentLocation = window.location.pathname;
-const viewedFilms = watchedF();
-const filmsForWatching = queueF();
-const noContentUl = document.querySelector('.gallery-home');
 
 Notify.init({
   width: '200px',
@@ -18,42 +15,41 @@ Notify.init({
   pauseOnHover: true,
 });
 
+
 if (currentLocation === '/my-library.html') {
   window.addEventListener('DOMContentLoaded', () => {
     refs.watched.classList.add('is-active');
     refs.queue.classList.remove('is-active');
     getFromWatched();
-
-    refs.watched.addEventListener('click', () => {
-    refs.queue.classList.remove('is-active');
-    refs.watched.classList.add('is-active');
-    getFromWatched();
 });
- 
-
   refs.queue.addEventListener('click', () => {
   refs.watched.classList.remove('is-active');
     refs.queue.classList.add('is-active');
     getFromQueue();
   });
     
-    
+    refs.watched.addEventListener('click', () => {
+    refs.watched.classList.add('is-active');
+    refs.queue.classList.remove('is-active');
+    getFromWatched();
   });
 }
 
 function getFromWatched() {
   clearGallery();
 
+  let viewedFilms = watchedF();
+
   try {
-    if (viewedFilms.length===null) {
+    if (viewedFilms.length<1) {
        markupNoContent();
     } else  {
       showPreloader();
-      markupOfSavedFilms(viewedFilms);
+      createGallery(viewedFilms);
     }
     
   } catch (error) {
-      markupNoContent();
+    markupNoContent();
   }
 
   setTimeout(() => {
@@ -62,13 +58,13 @@ function getFromWatched() {
 }
 
 function getFromQueue() {
-   clearGallery();
   try {
-    if (filmsForWatching.length===null) {
+    let filmsForWatching = queueF();
+    if (filmsForWatching.length<1) {
          markupNoContent();
     } else  {
       showPreloader();
-      markupOfSavedFilms(filmsForWatching);
+      createGallery(filmsForWatching);
     }
     
   } catch (error) {
@@ -81,77 +77,81 @@ function getFromQueue() {
 }
 
 function markupNoContent() {
-   let markup =`<img src="./no-content.jpg" alt="nothing is here">`;
-   noContentUl.insertAdjacentHTML('beforeend', markup);
- }
+  refs.galleryHome.innerHTML = `<div class="slumb"></div>`;
+  document.querySelector('.gallery').classList.add('section-reset');
+  document.querySelector('.gallery__pagination').classList.add('visually-hidden');
+}
+ 
+const defaultImgPath = 'https://i.ibb.co/4gF0DzF/enjoy-min.jpg';
+const imageURL = 'https://image.tmdb.org/t/p/';
 
-function markupOfSavedFilms(array) {
-  const defaultImgPath = 'https://i.ibb.co/4gF0DzF/enjoy-min.jpg';
-  const imageURL = 'https://image.tmdb.org/t/p/';
+function createSource({host, poster_path, width1, width2, min_width} = {}) {
+  return `<source 
+    srcset="${host}${width1}${poster_path} 1x, ${host}${width2}${poster_path} 2x"
+    media="(min-width: ${min_width})"
+  />`
+}
 
-  let markup = array
+function createImage({displayImageUrl, poster_path, title} = {}) {
+  return `<img
+    src="${displayImageUrl}original${poster_path}"
+    loading="lazy"
+    alt="${title}"
+    class="film-card__image"
+  />`
+}
 
-    .map(
-      ({ id, poster_path, title, release_date, vote_average, genres } = {}) => {
-        let date = new Date(release_date);
-        let year = date.getFullYear();
-        const genre = genres.map(genre => genre.name).join(', ');
-        let imageMarkup = '';
+function createDefaultImage({ title, default_url } = {}) { 
+    return `<img class="default-img" loading="lazy" alt="${title}" src="${default_url}"/>`
+}
 
-        if (poster_path) {
-          imageMarkup = `<picture>
-              <source
-                  srcset="
-                  ${imageURL || defaultImgPath}w780${poster_path}     1x,
-                  ${imageURL || defaultImgPath}original${poster_path} 2x
-                  "
-                  media="(min-width: 1024px)"
-              />
-              <source
-                  srcset="
-                  ${imageURL || defaultImgPath}w500${poster_path} 1x,
-                  ${imageURL || defaultImgPath}w780${poster_path} 2x
-                  "
-                  media="(min-width: 768px)"
-              />
-              <source
-                  srcset="
-                  ${imageURL || defaultImgPath}w185${poster_path} 1x,
-                  ${imageURL || defaultImgPath}w500${poster_path} 2x
-                  "
-                  media="(min-width: 320px)"
-              />
-              <img
-                  src="${imageURL || defaultImgPath}original${poster_path}"
-                  loading="lazy"
-                  alt="${title}"
-                  class="film-card__image"
-              />
-              </picture>`;
-        }
-        else { 
-              imageMarkup = `<img class="default-img" loading="lazy" alt="${original_title}" src="${DEFAULT_IMG_PATH}"/>`;
-            }
+function createGalleryItemImage({host, poster_path, title } = {}) { 
+  return `<picture> 
+      ${createSource({ host, poster_path, width1: 'w780', width2: 'original', min_width: '1024px' })}
+      ${createSource({ host, poster_path, width1: 'w500', width2: 'w780', min_width: '768px' })}
+      ${createSource({ host, poster_path, width1: 'w185', width2: 'w500', min_width: '320px' })}
+      ${createImage({host, poster_path, title})}
+      </picture>`;
+}
 
-        return `
-        <li class="gallery-item" data-id="${id}">
-        <a class="gallery__link" href="" data-action="" onclick="return false">
-            <div class="film-card">
-           <div class="film-card__image">${imageMarkup}</div>
-            <div class="card">
+function createGalleryItemImageOrDefault({ poster_path, title } = {}) { 
+  let host = poster_path ? imageURL : defaultImgPath;
+
+  return poster_path ? createGalleryItemImage({ host, poster_path, title }) : createDefaultImage({ title, default_url: DEFAULT_IMG_PATH });
+}
+
+function createGalleryItem({ id, poster_path, title, release_date, vote_average, genres } = {}) { 
+
+  let year = new Date(release_date).getFullYear();
+  const genre = genres.map(genre => genre.name).join(', ');
+
+  let imageItem = createGalleryItemImageOrDefault({ poster_path, title });
+
+  return `<li class="gallery-item" data-id="${id}">
+            <a class="gallery__link" href="" data-action="" onclick="return false">
+              <div class="film-card">
+              <div class="film-card__image">${imageItem}</div>
+              <div class="card">
                 <p class="card__name">${title}</p>
                 <div class="card__text">
                 <p class="card__genre">${genre} | <span class="card__year">${year}</span></p>                
                 <p class="card__rate">${vote_average}</p>
                 </div>
-            </div>
-            </div>
-        </a>
+              </div>
+              </div>
+            </a>
         </li>`;
-      }
-    )
-    .join('');
-  refs.gallery.insertAdjacentHTML('beforeend', markup);
+}
+
+function createGallery(films) {
+
+  let galleryItems = films.map((film) => createGalleryItem(film)).join('');
+
+  let gallery = `<ul class="gallery-home-list" id="gallery-home-list">${galleryItems}</ul>`
+
+  refs.galleryHome.innerHTML = gallery;
+  
+  document.querySelector('.gallery__pagination').classList.remove('visually-hidden');
 }
 
 function clearGallery() {
