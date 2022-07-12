@@ -51,8 +51,11 @@ function onEscKeyPress(event) {
 }
 
 async function onClickSearchAndRenderById(event) {
- //showPreloader();
-  if (event.target.nodeName === 'UL') {
+  //showPreloader();
+  if (
+    event.target.nodeName === 'UL' ||
+    event.target.attributes[1].nodeValue === 'nothing is here'
+  ) {
     return;
   }
   window.addEventListener('keydown', onEscKeyPress);
@@ -68,7 +71,7 @@ async function onClickSearchAndRenderById(event) {
     createAndUpdateInstance(data);
   } catch (error) {
     console.log(error);
-   // hidePreloader();
+    // hidePreloader();
   }
 }
 
@@ -84,7 +87,7 @@ function renderMovieDetails(data) {
   const imageURL = 'https://image.tmdb.org/t/p/';
   let markUp = '';
   let imageMarkup = '';
-  
+
   const {
     id,
     genres,
@@ -128,9 +131,8 @@ function renderMovieDetails(data) {
             media="(min-width: 320px)"
           />
           <img src="${imageURL}original${poster_path}" />
-        </picture>`;    
-    }
-  else {
+        </picture>`;
+  } else {
     imageMarkup = `<img alt="${original_title}" src="${DEFAULT_IMG_PATH}"/>`;
   }
   markUp = `<div class="card-modal__img">
@@ -186,12 +188,11 @@ function renderMovieDetails(data) {
           </li>
         </ul>
       </div>`;
-  
+
   document.querySelector('.card-modal__container').innerHTML = markUp;
 }
 
-function createAndUpdateInstance(obj = {})  
- {
+function createAndUpdateInstance(obj = {}) {
   const {
     id,
     genres,
@@ -270,7 +271,7 @@ function createAndUpdateInstance(obj = {})
   function removeMovieFromQueued() {
     showPreloader();
     movie.removeFromStorage(movieId, 'queuedMovies');
-    
+
     document
       .querySelector('.modal-btn--queued')
       .removeEventListener('click', removeMovieFromQueued);
@@ -284,7 +285,6 @@ function createAndUpdateInstance(obj = {})
     }, 200);
     movie.removeItemFromGallery('gallery-home-list', movieId);
   }
-
 
   if (movie.inWatched(movieId)) {
     document.querySelector('.modal-btn--watched').textContent =
@@ -385,7 +385,6 @@ class Movie {
       localStorage.setItem(`${storageName}`, JSON.stringify(movies));
     }
   }
-
 
   removeItemFromGallery(galleryClass, id) {
     let item = document.querySelector(`.${galleryClass} li[data-id='${id}']`);
