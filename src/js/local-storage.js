@@ -45,7 +45,7 @@ function getFromWatched() {
   clearGallery();
 
   try {
-    if (viewedFilms.length===null) {
+    if (viewedFilms.length<1) {
        markupNoContent();
     } else  {
       showPreloader();
@@ -64,7 +64,7 @@ function getFromWatched() {
 function getFromQueue() {
    clearGallery();
   try {
-    if (filmsForWatching.length===null) {
+    if (filmsForWatching.length<1) {
          markupNoContent();
     } else  {
       showPreloader();
@@ -80,9 +80,14 @@ function getFromQueue() {
   }, 600);
 }
 
+
 function markupNoContent() {
-   let markup =`<img src="./no-content.jpg" alt="nothing is here">`;
-   noContentUl.insertAdjacentHTML('beforeend', markup);
+  //clearGallery();
+ // let markup = `<img src="https://i.ibb.co/GWYydks/no-content.jpg" alt="nothing is here">`;
+  let markup =`<div class="slumb"></div>`;
+  noContentUl.innerHTML = markup;
+  document.querySelector('.gallery').classList.add('section-reset');
+  document.querySelector('.gallery__pagination').classList.add('visually-hidden');
  }
 
 function markupOfSavedFilms(array) {
@@ -133,8 +138,7 @@ function markupOfSavedFilms(array) {
               imageMarkup = `<img class="default-img" loading="lazy" alt="${original_title}" src="${DEFAULT_IMG_PATH}"/>`;
             }
 
-        return `
-        <li class="gallery-item" data-id="${id}">
+        return `<li class="gallery-item" data-id="${id}">
         <a class="gallery__link" href="" data-action="" onclick="return false">
             <div class="film-card">
            <div class="film-card__image">${imageMarkup}</div>
@@ -152,6 +156,7 @@ function markupOfSavedFilms(array) {
     )
     .join('');
   refs.gallery.insertAdjacentHTML('beforeend', markup);
+  document.querySelector('.gallery__pagination').classList.remove('visually-hidden');
 }
 
 function clearGallery() {
