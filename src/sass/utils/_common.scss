@@ -6,6 +6,28 @@ body {
   color: var(--primary-text-color);
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+.light-theme::-webkit-scrollbar-track {
+  background-color: #eaeaea;
+  box-shadow: inset 0 0 2px #9e9e9e; 
+} 
+.light-theme::-webkit-scrollbar-thumb {
+  background-color: var(--hero-btn-color);    
+  border-radius: 20px;     
+  border: 2px solid #cdcdcd;  
+}
+.dark-theme::-webkit-scrollbar-track {
+  background-color: #3a3a3a;
+    box-shadow: inset 0 0 2px #141414; 
+}
+.dark-theme::-webkit-scrollbar-thumb {
+  background-color: var(--hero-btn-color);    
+  border-radius: 20px;     
+  border: 2px solid #4e4e4e;  
+}
+
 .list {
   list-style: none;
 }
