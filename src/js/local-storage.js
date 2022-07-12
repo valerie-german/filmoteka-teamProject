@@ -23,12 +23,9 @@ if (currentLocation === '/my-library.html') {
     refs.watched.classList.add('is-active');
     refs.queue.classList.remove('is-active');
     getFromWatched();
-
-    refs.watched.addEventListener('click', () => {
-    refs.queue.classList.remove('is-active');
-    refs.watched.classList.add('is-active');
-    getFromWatched();
 });
+
+    
  
 
   refs.queue.addEventListener('click', () => {
@@ -36,6 +33,12 @@ if (currentLocation === '/my-library.html') {
     refs.queue.classList.add('is-active');
     getFromQueue();
   });
+    
+    refs.watched.addEventListener('click', () => {
+    refs.queue.classList.remove('is-active');
+    refs.watched.classList.add('is-active');
+    getFromWatched();
+   
     
     
   });
@@ -161,4 +164,5 @@ function markupOfSavedFilms(array) {
 
 function clearGallery() {
   galleryList.innerHTML = '';
+ //noContentUl.innerHTML = '';
 }
