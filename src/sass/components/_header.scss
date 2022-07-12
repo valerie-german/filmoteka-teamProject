@@ -59,13 +59,7 @@
 
 .header-nav__item {
   &:not(:last-child) {
-    @media screen and (min-width: 279px) {
-      margin-right: 20px;
-    }
-
-    @media screen and (min-width: 319px) {
-      margin-right: 40px;
-    }
+    margin-right: 40px;
   }
 }
 
@@ -104,6 +98,9 @@
 }
 // ---------------------HOME-RAGE---------------------
 .hero-home {
+  min-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
   padding: 0;
   background-repeat: no-repeat;
@@ -251,48 +248,62 @@
 }
 .notify-is-hidden {
   //visibility: hidden;
-   opacity: 0;
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);   
+  opacity: 0;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 
 // ---------------------HERO-MY-LIBRARY-PAGE----------
 .hero-lib {
+  min-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
   padding: 0;
-  //width: 100%;
   background-repeat: no-repeat;
-  background-position: top;
+  background-position: center;
+  background: url(../images/my-library-bg/my-library-img-320.png)
+    var(--hero-bg-color);
+  // background: url(../images/my-library-bg/my-library-img-320.png)var(--hero-bg-color);
   background-size: cover;
-
-  background-image: url(../images/my-library-bg/my-library-img-320.png);
 
   @media (min-device-pixel-ratio: 2),
     (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-    background-image: url(../images/my-library-bg/my-library-img-320-2x.png);
+    background: url(../images/my-library-bg/my-library-img-320-2x.png)
+      var(--hero-bg-color);
+    // background: url(../images/my-library-bg/my-library-img-320-2x.png)var(--hero-bg-color);
+    background-size: cover;
   }
 
-  @media screen and (min-width: 768px) {
-    background-image: url(../images/my-library-bg/my-library-img-768.png);
+  @media screen and (min-width: 767px) {
+    background: url(../images/my-library-bg/my-library-img-768.png)
+      var(--hero-bg-color);
+    // background-image: url(../images/my-library-bg/my-library-img-768.png)var(--hero-bg-color);
+    background-size: cover;
 
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(../images/my-library-bg/my-library-img-768-2x.png);
+      background-image: url(../images/my-library-bg/my-library-img-768-2x.png)
+        var(--hero-bg-color);
+      background-size: cover;
     }
   }
 
   @media screen and (min-width: 1280px) {
-    background-image: url(../images/my-library-bg/my-library-img-1280.png);
+    background: url(../images/my-library-bg/my-library-img-1280.png)
+      var(--hero-bg-color);
+    background-size: cover;
 
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(../images/my-library-bg/my-library-img-1280-2x.png);
+      background: url(../images/my-library-bg/my-library-img-1280-2x.png)
+        var(--hero-bg-color);
+      background-size: cover;
     }
   }
 }
@@ -306,8 +317,6 @@
   @media screen and (min-width: 767px) {
     height: 220px;
   }
-
-  background-color: var(--hero-bg-color);
 }
 
 .hero-lib-buttons__list {
