@@ -56,7 +56,7 @@ function onEscKeyPress(event) {
 }
 
 async function onClickSearchAndRenderById(event) {
-  if (event.target.nodeName === 'UL') {
+  if (event.target.nodeName === 'UL' || event.target.classList.value === 'slumb') {
     return;
   }
   showPreloader();
