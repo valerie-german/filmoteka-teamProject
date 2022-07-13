@@ -55,6 +55,7 @@ async function onClickSearchAndRenderById(event) {
   if (event.target.nodeName === 'UL') {
     return;
   }
+  showPreloader()
   window.addEventListener('keydown', onEscKeyPress);
   refs.backdrop.classList.remove('backdrop--hidden');
   document.body.style.overflow = 'hidden';
@@ -65,6 +66,7 @@ async function onClickSearchAndRenderById(event) {
 
     renderMovieDetails(data);
     createAndUpdateInstance(data);
+    hidePreloader()
   } catch (error) {
     console.log(error);
   }
@@ -209,7 +211,7 @@ function createAndUpdateInstance(obj = {}) {
     showPreloader();
     movie.addToWatch();
     document.querySelector('.modal-btn--watched').textContent =
-      'delete from watched';
+      'remove from watched';
     document
       .querySelector('.modal-btn--watched')
       .removeEventListener('click', addToWatch);
@@ -226,7 +228,7 @@ function createAndUpdateInstance(obj = {}) {
     showPreloader();
     movie.addToQueue();
     document.querySelector('.modal-btn--queued').textContent =
-      'delete from queue';
+      'remove from queue';
     document
       .querySelector('.modal-btn--queued')
       .removeEventListener('click', addToQueue);
