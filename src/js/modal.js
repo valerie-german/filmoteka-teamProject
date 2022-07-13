@@ -246,7 +246,7 @@ function createAndUpdateInstance(obj = {}) {
   }
 
   function removeMovieFromWatched() {
-    if (currentLocation === '/my-library.html') {
+    if (currentLocation === '/filmoteka-teamProject/my-library.html') {
       getFromWatched();
     }
     showPreloader();
@@ -267,7 +267,7 @@ function createAndUpdateInstance(obj = {}) {
   }
 
   function removeMovieFromQueued() {
-    if (currentLocation === '/my-library.html') {
+    if (currentLocation === '/filmoteka-teamProject/my-library.html') {
       getFromQueue();
     }
     showPreloader();
