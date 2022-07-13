@@ -74,6 +74,8 @@ export function pagiListeners(query) {
 
       markupApi.deleteMarkup();
 
+      let data;
+
       if (paginationApi.query) {
         data = await apiRequest.searchFilms(
           paginationApi._currentPage,
@@ -110,6 +112,8 @@ export function pagiListeners(query) {
       paginationApi.deleteMarkup();
 
       markupApi.deleteMarkup();
+
+      let data;
 
       if (paginationApi.query) {
         data = await apiRequest.searchFilms(
@@ -165,6 +169,8 @@ export function pagiListeners(query) {
 
         markupApi.deleteMarkup();
 
+        let data;
+
         if (paginationApi.query) {
           data = await apiRequest.searchFilms(
             paginationApi._currentPage,
@@ -218,6 +224,8 @@ export function pagiListeners(query) {
         paginationApi.deleteMarkup();
 
         markupApi.deleteMarkup();
+
+        let data;
 
         if (paginationApi.query) {
           data = await apiRequest.searchFilms(
