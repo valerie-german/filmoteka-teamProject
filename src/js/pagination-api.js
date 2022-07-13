@@ -30,7 +30,7 @@ export class PaginApi {
       let lastPageBtn = totalPage;
       array.push(`
         <li class="pagination-btns__item">
-        <button class="pagination-btns__btn btn-pag-previ" data-action="previ">
+        <button class="pagination-btns__btn btn-pag-previ" name="button" data-action="previ">
         <svg
           class="svg svg-prev"
           width="16"
@@ -59,10 +59,10 @@ export class PaginApi {
       </button>
       </li>
         <li class="pagination-btns__item">
-          <button class="pagination-btns__btn first__btn btn-page">1</button>
+          <button name="button" class="pagination-btns__btn first__btn btn-page">1</button>
         </li>
         <li class="pagination-btns__item">
-          <button class="pagination-btns__btn dots__btn" disabled="true">...</button>
+          <button name="button" class="pagination-btns__btn dots__btn" disabled="true">...</button>
         </li>
         `);
       if (totalPage > 6) {
@@ -72,16 +72,18 @@ export class PaginApi {
         for (let index = 0; index < lastPageBtn; index += 1) {
           let currentP = this.numberToRender;
           array.push(`<li class="pagination-btns__item">
-          <button class="pagination-btns__btn btn__static btn-page${
+          <button name="button" class="pagination-btns__btn btn__static btn-page${
             currentP + index
-          } btn-page-number${currentP + index}">${currentP + index}</button>
+          } btn-page-number${currentP + index}">${
+            currentP + index
+          }</buttonclass=>
         </li>`);
         }
       } else {
         for (let index = 6; index > 0; index -= 1) {
           let currentP = this.numberToRender;
           array.push(`<li class="pagination-btns__item">
-          <button class="pagination-btns__btn btn__static btn-page${
+          <button name="button" class="pagination-btns__btn btn__static btn-page${
             currentP - index + 1
           } btn-page-number${currentP - index + 1}">${
             currentP - index + 1
@@ -91,13 +93,13 @@ export class PaginApi {
       }
 
       array.push(`<li class="pagination-btns__item">
-          <button class="pagination-btns__btn dots__btn" disabled="true">...</button>
+          <button name="button" class="pagination-btns__btn dots__btn" disabled="true">...</button>
         </li>
         <li class="pagination-btns__item">
-          <button class="pagination-btns__btn last__btn btn-page${totalPage}">${totalPage}</button>
+          <button name="button" class="pagination-btns__btn last__btn btn-page${totalPage}">${totalPage}</button>
         </li>
         <li class="pagination-btns__item">
-        <button class="pagination-btns__btn btn-pag-next" data-action="next">
+        <button name="button" class="pagination-btns__btn btn-pag-next" data-action="next">
         <svg
           class="svg svg-next"
           width="16"

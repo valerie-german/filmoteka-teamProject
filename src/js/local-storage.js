@@ -3,6 +3,8 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { showPreloader, hidePreloader } from './preloader';
 import { watchedF, queueF } from './parce-storage';
 
+export { getFromWatched, getFromQueue };
+
 const galleryList = refs.gallery;
 const currentLocation = window.location.pathname;
 
@@ -171,9 +173,9 @@ function createGalleryItem({
 function createGallery(films) {
   let galleryItems = films.map(film => createGalleryItem(film)).join('');
 
-  let gallery = `<ul class="gallery-home-list" id="gallery-home-list">${galleryItems}</ul>`;
+  // let gallery = `<ul class="gallery-home-list" id="gallery-home-list">${galleryItems}</ul>`;
 
-  refs.galleryHome.innerHTML = gallery;
+  refs.gallery.innerHTML = galleryItems;
 
   document
     .querySelector('.gallery__pagination')

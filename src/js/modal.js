@@ -2,7 +2,11 @@ const API_KEY = '83cba2c85d0df477852b094af9fbdddb';
 const axios = require('axios').default;
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
+import { getFromWatched, getFromQueue } from './local-storage';
+
 import { hidePreloader, showPreloader } from './preloader';
+
+const currentLocation = window.location.pathname;
 
 const refs = {
   openModalFooter: document.querySelector('.footer-link'),
@@ -55,7 +59,7 @@ async function onClickSearchAndRenderById(event) {
   if (event.target.nodeName === 'UL') {
     return;
   }
-  showPreloader()
+  showPreloader();
   window.addEventListener('keydown', onEscKeyPress);
   refs.backdrop.classList.remove('backdrop--hidden');
   document.body.style.overflow = 'hidden';
@@ -66,7 +70,7 @@ async function onClickSearchAndRenderById(event) {
 
     renderMovieDetails(data);
     createAndUpdateInstance(data);
-    hidePreloader()
+    hidePreloader();
   } catch (error) {
     console.log(error);
   }
@@ -173,10 +177,10 @@ function renderMovieDetails(data) {
         </p>
         <ul class="list modal-btn__list">
           <li class="modal-btn__item">
-            <button class="modal-btn modal-btn--watched" type="button">add to Watched</button>
+            <button name="button" class="modal-btn modal-btn--watched" type="button">add to Watched</button>
           </li>
           <li class="modal-btn__item">
-            <button class="modal-btn modal-btn--queued" type="button">add to queue</button>
+            <button name="button" class="modal-btn modal-btn--queued" type="button">add to queue</button>
           </li>
         </ul>
       </div>`;
@@ -242,6 +246,9 @@ function createAndUpdateInstance(obj = {}) {
   }
 
   function removeMovieFromWatched() {
+    if (currentLocation === '/my-library.html') {
+      getFromWatched();
+    }
     showPreloader();
     movie.removeFromStorage(movieId, 'watchedMovies');
     document
@@ -260,6 +267,9 @@ function createAndUpdateInstance(obj = {}) {
   }
 
   function removeMovieFromQueued() {
+    if (currentLocation === '/my-library.html') {
+      getFromQueue();
+    }
     showPreloader();
     movie.removeFromStorage(movieId, 'queuedMovies');
 

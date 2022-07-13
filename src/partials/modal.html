@@ -1,6 +1,6 @@
 <div class="backdrop backdrop--hidden">
   <div class="card-modal">
-    <button type="button" class="modal-close">
+    <button type="button" name="button" class="modal-close">
       <!-- <img
         class="modal-close__icon"
         src="./images/close-btn.svg"
@@ -8,10 +8,9 @@
         width="30"
         height="30"
       /> -->
-    <svg class="modal-close__icon" width="24" height="24">
-            <use href="./images/icons.svg#icon-close-modal"></use>
-          </svg>
-
+      <svg class="modal-close__icon" width="24" height="24">
+        <use href="./images/icons.svg#icon-close-modal"></use>
+      </svg>
     </button>
     <div class="card-modal__container">
       <div class="card-modal__img">
@@ -88,10 +87,14 @@
         </p>
         <ul class="list modal-btn__list">
           <li class="modal-btn__item">
-            <button class="modal-btn" type="button">add to Watched</button>
+            <button class="modal-btn" name="button" type="button">
+              add to Watched
+            </button>
           </li>
           <li class="modal-btn__item">
-            <button class="modal-btn" type="button">add to queue</button>
+            <button class="modal-btn" name="button" type="button">
+              add to queue
+            </button>
           </li>
         </ul>
       </div>
