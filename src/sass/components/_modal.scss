@@ -9,8 +9,6 @@
   background: rgba(0, 0, 0, 0.2);
   opacity: 1;
   z-index: 2;
-
-  // transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .backdrop--hidden {
@@ -20,7 +18,7 @@
 }
 
 .backdrop--hidden .card-modal {
-  transform:translate(-50%) scale(0.8);
+  transform: translate(-50%) scale(0.8);
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -48,19 +46,17 @@
   }
 
   @media screen and (min-width: 1024px) {
-    //top: 24%;
     width: 800px;
     padding: 45px 12px 40px 12px;
   }
 
   background-color: var(--bg-color);
 
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
-  0px 1px 1px rgba(0, 0, 0, 0.14),
-  0px 2px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
 
-    transform: translate(-50%, -50%) scale(1);
-    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-modal__container {
@@ -98,11 +94,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   fill: var(--primary-text-color);
-    &:hover,
-    &:focus {
-      fill: var(--hero-btn-color);
-      transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    }
+  &:hover,
+  &:focus {
+    fill: var(--hero-btn-color);
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
 .card-modal__img {
@@ -149,14 +145,13 @@
 .meta-container {
   display: flex;
   margin-bottom: 20px;
-  
 }
-.feature__list{
+.feature__list {
   margin-right: 40px;
   min-width: 70px;
   @media screen and (min-width: 1024px) {
-      margin-right: 84px;
-    }
+    margin-right: 84px;
+  }
 }
 
 .meta__feature {
@@ -166,7 +161,6 @@
 
   color: var(--modal-secondary-text-color);
 }
-
 
 .value__list {
   display: flex;
@@ -215,14 +209,13 @@
   line-height: 1.16;
 
   text-align: center;
-  text-transform: uppercase; 
+  text-transform: uppercase;
 }
 
 .active {
   color: var(--secondary-text-color);
   background-color: var(--bg-rating);
 }
-
 
 .modal-btn__list {
   display: flex;
@@ -240,13 +233,12 @@
   @media screen and (min-width: 1024px) {
     justify-content: flex-start;
     margin-left: 8px;
-    
   }
 }
-.modal-btn--watched{
+.modal-btn--watched {
   @media screen and (min-width: 1024px) {
-        margin-right: 15px;
-      }
+    margin-right: 15px;
+  }
 }
 
 .modal-btn {
@@ -270,15 +262,16 @@
   }
 
   @media screen and (min-width: 1024px) {
-    width: 135px;    
+    width: 135px;
   }
 
   &:hover,
   &:focus {
     background-color: var(--hero-btn-color);
     color: var(--secondary-text-color);
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
     border: none;
   }
 }

@@ -2,7 +2,6 @@ const API_KEY = '83cba2c85d0df477852b094af9fbdddb';
 const axios = require('axios').default;
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-
 import { hidePreloader, showPreloader } from './preloader';
 
 const refs = {
@@ -22,7 +21,6 @@ refs.backdropFooter.addEventListener('click', onClickBackdrop);
 refs.galleryLink[0].addEventListener('click', onClickSearchAndRenderById);
 refs.btnModal.addEventListener('click', closeModalGallery);
 refs.backdrop.addEventListener('click', onClickBackdrop);
-
 
 function openModal() {
   refs.backdropFooter.classList.remove('backdrop--hidden');
@@ -54,7 +52,6 @@ function onEscKeyPress(event) {
 }
 
 async function onClickSearchAndRenderById(event) {
- //showPreloader();
   if (event.target.nodeName === 'UL') {
     return;
   }
@@ -65,13 +62,11 @@ async function onClickSearchAndRenderById(event) {
   const movieId = event.target.closest('.gallery-item').dataset.id;
   try {
     const { data } = await getMovieById(movieId);
-    //hidePreloader();
-    console.log(data);
+
     renderMovieDetails(data);
     createAndUpdateInstance(data);
   } catch (error) {
     console.log(error);
-   // hidePreloader();
   }
 }
 
@@ -87,7 +82,7 @@ function renderMovieDetails(data) {
   const imageURL = 'https://image.tmdb.org/t/p/';
   let markUp = '';
   let imageMarkup = '';
-  
+
   const {
     id,
     genres,
@@ -100,11 +95,6 @@ function renderMovieDetails(data) {
     vote_count,
     release_date,
   } = data;
-  // const obj = { id, genres, title, poster_path, vote_average, release_date };
-  // const movie = new Movie(obj);
-  // console.log(movie);
-  // movie.addToWatch();
-  // movie.addToQueue();
 
   const genresToRender = genres.map(genre => genre.name).join(', ');
   if (poster_path) {
@@ -131,9 +121,8 @@ function renderMovieDetails(data) {
             media="(min-width: 320px)"
           />
           <img src="${imageURL}original${poster_path}" />
-        </picture>`;    
-    }
-  else {
+        </picture>`;
+  } else {
     imageMarkup = `<img alt="${original_title}" src="${DEFAULT_IMG_PATH}"/>`;
   }
   markUp = `<div class="card-modal__img">
@@ -189,12 +178,11 @@ function renderMovieDetails(data) {
           </li>
         </ul>
       </div>`;
-  
+
   document.querySelector('.card-modal__container').innerHTML = markUp;
 }
 
-function createAndUpdateInstance(obj = {})  
- {
+function createAndUpdateInstance(obj = {}) {
   const {
     id,
     genres,
@@ -209,8 +197,7 @@ function createAndUpdateInstance(obj = {})
   } = obj;
   const movieId = id;
   const movie = new Movie(obj);
-  // console.log(id)
-  // document.querySelector('.card-modal__container').innerHTML = markUp;
+
   document
     .querySelector('.modal-btn--watched')
     .addEventListener('click', addToWatch);
@@ -273,8 +260,7 @@ function createAndUpdateInstance(obj = {})
   function removeMovieFromQueued() {
     showPreloader();
     movie.removeFromStorage(movieId, 'queuedMovies');
-    //nocontent div 
-    
+
     document
       .querySelector('.modal-btn--queued')
       .removeEventListener('click', removeMovieFromQueued);
@@ -288,7 +274,6 @@ function createAndUpdateInstance(obj = {})
     }, 200);
     movie.removeItemFromGallery('gallery-home-list', movieId);
   }
-
 
   if (movie.inWatched(movieId)) {
     document.querySelector('.modal-btn--watched').textContent =
@@ -389,7 +374,6 @@ class Movie {
       localStorage.setItem(`${storageName}`, JSON.stringify(movies));
     }
   }
-
 
   removeItemFromGallery(galleryClass, id) {
     let item = document.querySelector(`.${galleryClass} li[data-id='${id}']`);

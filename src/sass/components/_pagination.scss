@@ -16,7 +16,6 @@
 }
 
 .svg {
-  // position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,9 +29,6 @@
 }
 
 .pagination-btns__btn {
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
   width: 40px;
   height: 40px;
   padding: 0;
@@ -65,15 +61,15 @@
 }
 
 .btn__static {
-    &:hover,
-    &:focus {
-        border: 1px solid var(--hero-btn-color);
-        // color: var(--hero-btn-color);
-        box-shadow: 0 0 2px var(--hero-btn-color);
-        transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1), 
-        color 200ms cubic-bezier(0.4, 0, 0.2, 1), 
-        border 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    }
+  &:hover,
+  &:focus {
+    border: 1px solid var(--hero-btn-color);
+    // color: var(--hero-btn-color);
+    box-shadow: 0 0 2px var(--hero-btn-color);
+    transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1),
+      color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+      border 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
 .btn-pag--current {
@@ -90,13 +86,13 @@
     align-items: center;
     justify-content: center;
   }
-    &:hover,
-    &:focus {
-        border: 1px solid var(--hero-btn-color);
-        box-shadow: 0 0 2px var(--hero-btn-color);
-        transition: border 200ms cubic-bezier(0.4, 0, 0.2, 1), 
-        box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    }
+  &:hover,
+  &:focus {
+    border: 1px solid var(--hero-btn-color);
+    box-shadow: 0 0 2px var(--hero-btn-color);
+    transition: border 200ms cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
 .dots__btn {
@@ -108,9 +104,6 @@
     align-items: center;
     justify-content: center;
   }
-  // @media screen and (min-width: 768px) {
-  //   display: none;
-  // }
 }
 
 .last__btn {
@@ -121,23 +114,24 @@
     align-items: center;
     justify-content: center;
   }
-    &:hover,
-    &:focus {
-        border: 1px solid var(--hero-btn-color);
-        // color: var(--hero-btn-color);
-        box-shadow: 0 0 2px var(--hero-btn-color);
-        transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1), 
-        color 200ms cubic-bezier(0.4, 0, 0.2, 1), 
-        border 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    }
+  &:hover,
+  &:focus {
+    border: 1px solid var(--hero-btn-color);
+    // color: var(--hero-btn-color);
+    box-shadow: 0 0 2px var(--hero-btn-color);
+    transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1),
+      color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+      border 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
-.btn-pag-previ, .btn-pag-next {
-    &:hover,
-    &:focus {
-        background-color: var(--hero-btn-color);
-        box-shadow: 0 0 3px var(--hero-btn-color);
-        transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
-        box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    }
+.btn-pag-previ,
+.btn-pag-next {
+  &:hover,
+  &:focus {
+    background-color: var(--hero-btn-color);
+    box-shadow: 0 0 3px var(--hero-btn-color);
+    transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }

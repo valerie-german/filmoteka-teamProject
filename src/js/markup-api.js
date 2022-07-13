@@ -1,6 +1,5 @@
 import ApiRequest from './genre-trand-request';
 
-// import { renderPagination } from './render-pagination';
 import { refs } from './refs';
 
 const apiRequest = new ApiRequest();
@@ -39,7 +38,7 @@ export class MarkupApi {
           if (genre_ids) {
             let genresArray;
             let uniqueGenres = [];
-            
+
             genresArray = dataGenres
               .filter(genre => genre_ids.includes(genre.id))
               .map(genre => genre.name);
@@ -90,13 +89,12 @@ export class MarkupApi {
                     
                 />
                 </picture>`;
-            }
-            else { 
+            } else {
               imageMarkup = `<img class="default-img" loading="lazy" alt="${original_title}" src="${DEFAULT_IMG_PATH}"/>`;
             }
 
             let markUp = `<li class="gallery-item" data-id="${id}">
-        <a class="gallery__link" href="" data-action="${id}" onclick="return false">
+        <a class="gallery__link" href="#" data-action="${id}" onclick="return false">
             <div class="film-card">
             <div class="film-card__image">${imageMarkup}</div>
             <div class="card">
