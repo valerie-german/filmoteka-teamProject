@@ -66,7 +66,7 @@ async function onClickSearchAndRenderById(event) {
   try {
     const { data } = await getMovieById(movieId);
     
-    console.log(data);
+    // console.log(data);
     renderMovieDetails(data);
     createAndUpdateInstance(data);
     hidePreloader();
