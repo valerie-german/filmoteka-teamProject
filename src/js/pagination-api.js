@@ -146,8 +146,8 @@ export class PaginApi {
       this.refs.lastBtn.classList.add('visually-hidden');
       this.refs.btnNext.classList.add('visually-hidden');
     }
-
-    if (this.refs.changingBtns[0].textContent === '1') {
+    console.log();
+    if (Number(this.refs.changingBtns[0].textContent) === 1) {
       this.refs.btnPrev.setAttribute('disabled', 'true');
     }
 
