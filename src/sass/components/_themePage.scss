@@ -1,0 +1,146 @@
+body.light-theme {
+    transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+body.dark-theme {
+    background-color: var(--dark-bg-color);
+    color: var(--secondary-text-color);
+    transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+body.dark-theme .card-modal {
+    background-color: #4e4e4e;
+}
+body.dark-theme .card__name {
+    color: var(--secondary-text-color);
+}
+body.dark-theme .modal-heading, body.dark-theme .meta__feature, body.dark-theme .modal-meta__discription, body.dark-theme .modal-meta__title {
+    color: var(--secondary-text-color);
+}
+body.dark-theme .modal-close {
+    background-color: #4e4e4e;
+}
+body.dark-theme .modal-close__icon {
+    fill: var(--secondary-text-color);
+    
+    &:hover,
+    &:focus {
+       fill: var(--hero-btn-color);
+       transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1); 
+    }
+}
+body.dark-theme .vote-votes {
+    color: var(--primary-text-color);
+}
+body.dark-theme .modal-btn {
+    color: var(--secondary-text-color);
+    border-color: var(--secondary-text-color);
+    background-color: #414141;
+
+    &:hover,
+    &:focus {
+        background-color: var(--hero-btn-color);
+        transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        border: none;
+    }
+}
+body.dark-theme .pagination-btns__btn {
+    color: var(--secondary-text-color);
+    background-color: #4e4e4e;
+}
+body.dark-theme .btn__static, body.dark-theme .first__btn, body.dark-theme .last__btn  {
+    color: var(--secondary-text-color);
+    background-color: #4e4e4e;
+    &:hover,
+    &:focus {
+        border: 1px solid var(--hero-btn-color);
+        box-shadow: 0 0 2px var(--hero-btn-color);
+        transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1), 
+        color 200ms cubic-bezier(0.4, 0, 0.2, 1), 
+        border 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+
+body.dark-theme .btn-pag--current {
+    background-color: var(--bg-rating);
+}
+body.dark-theme .path-prev {
+    stroke: var(--secondary-text-color);
+}
+body.dark-theme .btn-pag-previ, body.dark-theme .btn-pag-next {
+    &:hover,
+    &:focus {
+        background-color: var(--hero-btn-color);
+        box-shadow: 0 0 3px var(--hero-btn-color);
+        transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+body.dark-theme .path-next {
+    stroke: var(--secondary-text-color);
+}
+body.dark-theme .footer {
+    background-color: #303030;
+}
+body.dark-theme .footer-link {
+    color: var(--secondary-text-color);
+    &:hover,
+    &:focus {
+        color: var(--secondary-color-title-card);
+        transition: color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+body.dark-theme .team-modal__body {
+    background-color: #4e4e4e;
+}
+body.dark-theme .team-modal__close {
+    background-color: #4e4e4e;
+}
+body.dark-theme .cards-set__title {
+    color: var(--secondary-text-color);
+}
+body.dark-theme .cards-set__name {
+    color: var(--primary-text-color);
+}
+
+.theme {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+.theme__wrap {
+    position: relative;
+    right: 10px;
+}
+.theme__change {
+    -webkit-appearance: none;
+    width: 65px;
+    height: 36px;
+    background-color: var(--hero-btn-color);
+    border: 3px solid var(--secondary-text-color);
+    cursor: pointer;
+    background-image: url("../images/sun-moon.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 100px;
+    outline: none;
+    transition: all .25s cubic-bezier(.4, 0, .2, 1);
+}
+.theme__change::before {
+  content: '';
+  position: absolute;
+  width: 29px;
+  height: 29px;
+  left: 50%;
+  top: 44%;
+  -webkit-transform: translateY(-50%) scale(0.8);
+          transform: translateY(-50%) scale(0.8);
+  border: 3px solid var(--hero-btn-color);
+  border-radius: 100px;
+  background-color: var(--hero-btn-color);
+  -webkit-transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+}
+
+.theme__change:checked::before {
+  left: 3px;
+}

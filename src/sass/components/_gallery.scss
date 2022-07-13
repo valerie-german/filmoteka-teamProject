@@ -19,7 +19,7 @@ li {
 
 .gallery-home-list {
   max-width: 280px;
-  // margin-left: 10px;
+
   margin-left: auto;
   margin-right: auto;
   @media screen and (min-width: 768px) {
@@ -38,7 +38,6 @@ li {
 
 .gallery-library-list {
   max-width: 280px;
-  // margin-left: 10px;
   margin-left: auto;
   margin-right: auto;
 
@@ -83,15 +82,15 @@ li {
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  
-  // margin-bottom: 20px;
 
   transition: 250ms linear;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
-  &:hover,
-  &:focus {
-    transform: scale(1.05);
+  @media screen and (min-width: 1280px) {
+    &:hover,
+    &:focus {
+      transform: scale(1.05);
+    }
   }
 }
 
@@ -101,7 +100,7 @@ li {
   margin-bottom: 10px;
   border-radius: 5px;
   object-fit: cover;
- 
+
   &:hover,
   &:focus {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
@@ -131,10 +130,31 @@ li {
   }
 }
 
+.library-information--saved {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.33;
+
+  text-align: center;
+
+  text-transform: uppercase;
+}
+
+.library-information--queue {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.33;
+
+  text-align: center;
+
+  text-transform: uppercase;
+}
+
 .card__genre {
-  display: flex;
-  align-items: baseline;
-  border-right: 1 px solid #ff6b08;
+  color: var(--secondary-color-title-card);
+  margin-right: 4px;
+  padding-right: 4px;
+  //border-right: 1 px solid #ff6b08;
 }
 
 .card__text {
@@ -150,13 +170,6 @@ li {
     font-size: 20px;
     line-height: 1.2;
   }
-}
-
-.card__genre {
-  color: var(--secondary-color-title-card);
-  margin-right: 4px;
-  padding-right: 4px;
-  border-right: 1px solid #ff6b08;
 }
 
 .card__rate {
@@ -177,5 +190,28 @@ li {
   @media screen and (min-width: 1280px) {
     width: 40px;
     height: 20px;
+  }
+}
+
+.default-img {
+  object-fit: cover;
+  height: 100%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.slumb {
+  width: auto;
+  height: 500px;
+  background-image: url('https://i.ibb.co/myf5Ynx/no-content-img-mob-1.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  @media screen and (min-width: 768px) {
+    background-image: url('https://i.ibb.co/GWYydks/no-content.jpg');
+    height: 470px;
+  }
+  @media screen and (min-width: 1280px) {
+    height: 810px;
   }
 }

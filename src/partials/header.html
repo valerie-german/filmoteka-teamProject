@@ -1,33 +1,33 @@
 <header class="header">
   <div class="container">
-  <nav class="header-nav">
-    <a href="./index.html" class="logo no-link">
-      <img class="logo__icon" src="./images/film-icon.svg" alt="Icon logo" />
-      <span class="logo__label">Filmoteka</span>
-    </a>
-    <ul class="header-nav__list list">
-      <li class="header-nav__item">
-        <a
-          href="./index.html"
-          class="header-nav__link header-nav__link--current no-link"
-          >Home</a
-        >
-      </li>
-      <li class="header-nav__item">
-        <a href="./my-library.html" class="header-nav__link no-link"
-          >My library</a
-        >
-      </li>
-    </ul>
-  </nav>
+    <nav class="header-nav">
+      <a href="./index.html" class="logo no-link">
+        <img class="logo__icon" src="./images/film-icon.svg" alt="Icon logo" />
+        <span class="logo__label">Filmoteka</span>
+      </a>
+      <ul class="header-nav__list list">
+        <li class="header-nav__item">
+          <a
+            href="./index.html"
+            class="header-nav__link header-nav__link--current no-link"
+            >Home</a
+          >
+        </li>
+        <li class="header-nav__item">
+          <a href="./my-library.html" class="header-nav__link no-link"
+            >My library</a
+          >
+        </li>
+      </ul>
+    </nav>
   </div>
 </header>
 
-<section class="hero-home container">
-  <div class="hero-home__container ">
+<section class="hero-home">
+  <div class="hero-home__container">
     <form class="hero-home_form js-search-form" name="search">
       <input
-        class="form_input"
+        class="form_input js-input"
         type="text"
         name="searchQuery"
         autocomplete="off"
@@ -39,8 +39,13 @@
         </svg>
       </button>
     </form>
-    <p class="notification">
-      Search result not successful. Enter the correct movie name and try again
+    <p class="notification notify-is-hidden">
+      Something is going wrong... Enter the correct movie name and try again
     </p>
+  </div>
+  <div class="theme">
+    <div class="theme__wrap">
+      <input type="checkbox" class="theme__change" id="theme-switch-toggle" />
+    </div>
   </div>
 </section>
