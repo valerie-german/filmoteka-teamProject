@@ -13,7 +13,7 @@ export class MarkupApi {
 
   makeGalleryCardsMarkup(filmsData, dataGenres) {
     const currentLocation = window.location.pathname;
-    if (currentLocation === '/index.html' || currentLocation === '/') {
+    if (currentLocation === '/filmoteka-teamProject/index.html' || currentLocation === '/filmoteka-teamProject/') {
       this.isMainPage = true;
     } else {
       this.isMainPage = false;

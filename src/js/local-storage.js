@@ -17,7 +17,7 @@ Notify.init({
   pauseOnHover: true,
 });
 
-if (currentLocation === '/my-library.html') {
+if (currentLocation === '/filmoteka-teamProject/my-library.html') {
   window.addEventListener('DOMContentLoaded', () => {
     refs.watched.classList.add('is-active');
     refs.queue.classList.remove('is-active');

@@ -10,7 +10,6 @@ import ApiRequest from './js/genre-trand-request';
 import { defaultGalleyRender } from './js/default-gallery-render';
 import { searchFilms } from './js/search-films';
 import { PaginApi } from './js/pagination-api';
-import { PaginApi } from './js/pagination-api';
 import { MarkupApi } from './js/markup-api';
 import { showPreloader, hidePreloader } from './js/preloader';
 
@@ -26,7 +25,7 @@ const currentLocation = window.location.pathname;
 
 window.addEventListener('DOMContentLoaded', searchByTranding);
 function searchByTranding() {
-  if (currentLocation === '/filmoteka-teamProject/index.html' || currentLocation === '/') {
+  if (currentLocation === '/filmoteka-teamProject/index.html' || currentLocation === '/filmoteka-teamProject/') {
     //refs.libraryMassage.classList.add('visually-hidden');
     defaultGalleyRender();
   }
