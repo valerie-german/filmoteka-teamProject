@@ -54,7 +54,7 @@ function onEscKeyPress(event) {
 }
 
 async function onClickSearchAndRenderById(event) {
- //showPreloader();
+ showPreloader();
   if (event.target.nodeName === 'UL') {
     return;
   }
@@ -65,10 +65,11 @@ async function onClickSearchAndRenderById(event) {
   const movieId = event.target.closest('.gallery-item').dataset.id;
   try {
     const { data } = await getMovieById(movieId);
-    //hidePreloader();
+    
     console.log(data);
     renderMovieDetails(data);
     createAndUpdateInstance(data);
+    hidePreloader();
   } catch (error) {
     console.log(error);
    // hidePreloader();
@@ -222,7 +223,7 @@ function createAndUpdateInstance(obj = {})
     showPreloader();
     movie.addToWatch();
     document.querySelector('.modal-btn--watched').textContent =
-      'delete from watched';
+      'remove from watched';
     document
       .querySelector('.modal-btn--watched')
       .removeEventListener('click', addToWatch);
@@ -239,7 +240,7 @@ function createAndUpdateInstance(obj = {})
     showPreloader();
     movie.addToQueue();
     document.querySelector('.modal-btn--queued').textContent =
-      'delete from queue';
+      'remove from queue';
     document
       .querySelector('.modal-btn--queued')
       .removeEventListener('click', addToQueue);
