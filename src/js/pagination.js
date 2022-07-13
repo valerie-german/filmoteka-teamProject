@@ -1,5 +1,5 @@
 import { PaginApi } from './pagination-api';
-import { refs } from './refs';
+
 import ApiRequest from './genre-trand-request';
 import { MarkupApi } from './markup-api';
 
@@ -182,18 +182,12 @@ export function pagiListeners(query) {
           Number(paginationApi.refs.changingBtns[5].textContent) ===
           apiRequest.totalPages
         ) {
-          // paginationApi.refs.lastBtn.setAttribute('disabled', 'true');
           paginationApi.isLastForDisabled = true;
         }
       }
     }
 
     async function onPrevBtn(event) {
-      // showPreloader();
-
-      // setTimeout(() => {
-      //   hidePreloader();
-      // }, 300);
       if (
         event.target.classList.value.includes('btn-pag-prev') ||
         event.target.classList.value.includes('svg-prev') ||
