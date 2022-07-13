@@ -202,7 +202,7 @@ export function pagiListeners(query) {
           return;
         }
 
-        if (paginationApi.refs.changingBtns[0].textContent === '1') {
+        if (Number(paginationApi.refs.changingBtns[0].textContent) === 1) {
           return;
         }
 
