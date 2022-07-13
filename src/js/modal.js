@@ -222,6 +222,8 @@ function createAndUpdateInstance(obj = {}) {
     document
       .querySelector('.modal-btn--watched')
       .addEventListener('click', removeMovieFromWatched);
+     document
+      .querySelector('.modal-btn--queued').setAttribute('disabled', true)
     Notify.success('Added to watch');
     setTimeout(() => {
       hidePreloader();
@@ -239,6 +241,8 @@ function createAndUpdateInstance(obj = {}) {
     document
       .querySelector('.modal-btn--queued')
       .addEventListener('click', removeMovieFromQueued);
+    document
+      .querySelector('.modal-btn--watched').setAttribute('disabled', true)
     Notify.success('Added to queue');
     setTimeout(() => {
       hidePreloader();
@@ -259,6 +263,8 @@ function createAndUpdateInstance(obj = {}) {
       .addEventListener('click', addToWatch);
     document.querySelector('.modal-btn--watched').textContent =
       'add to Watched';
+     document
+      .querySelector('.modal-btn--queued').removeAttribute('disabled', true)
     Notify.success('Removed from watched');
     setTimeout(() => {
       hidePreloader();
@@ -280,6 +286,8 @@ function createAndUpdateInstance(obj = {}) {
       .querySelector('.modal-btn--queued')
       .addEventListener('click', addToQueue);
     document.querySelector('.modal-btn--queued').textContent = 'add to queue';
+      document
+      .querySelector('.modal-btn--watched').removeAttribute('disabled', true)
     Notify.success('Removed from queued');
     setTimeout(() => {
       hidePreloader();
@@ -297,6 +305,10 @@ function createAndUpdateInstance(obj = {}) {
       .querySelector('.modal-btn--watched')
       .addEventListener('click', removeMovieFromWatched);
   }
+
+
+ 
+
 
   if (movie.inQueued(movieId)) {
     document.querySelector('.modal-btn--queued').textContent =
