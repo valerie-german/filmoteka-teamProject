@@ -1,6 +1,5 @@
 import ApiRequest from './genre-trand-request';
 import { MarkupApi } from './markup-api';
-
 import { renderPagination } from './render-pagination';
 import { refs } from './refs';
 import { getFilmId } from './getFilmId';

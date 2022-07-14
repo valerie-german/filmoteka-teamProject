@@ -46,7 +46,7 @@ function getFromWatched() {
       markupNoContent();
     } else {
       showPreloader();
-      resetNoContent()
+      resetNoContent();
       createGallery(viewedFilms);
     }
   } catch (error) {
@@ -65,7 +65,7 @@ function getFromQueue() {
       markupNoContent();
     } else {
       showPreloader();
-      resetNoContent()
+      resetNoContent();
       createGallery(filmsForWatching);
     }
   } catch (error) {
@@ -87,9 +87,9 @@ function markupNoContent() {
 
 function resetNoContent() {
   document.querySelector('.gallery').classList.remove('section-reset');
-    document
+  document
     .querySelector('.gallery__pagination')
-    .classList.remove('visually-hidden')
+    .classList.remove('visually-hidden');
 }
 
 const defaultImgPath = 'https://i.ibb.co/4gF0DzF/enjoy-min.jpg';
@@ -181,8 +181,6 @@ function createGalleryItem({
 
 function createGallery(films) {
   let galleryItems = films.map(film => createGalleryItem(film)).join('');
-
-  // let gallery = `<ul class="gallery-home-list" id="gallery-home-list">${galleryItems}</ul>`;
 
   refs.gallery.innerHTML = galleryItems;
 

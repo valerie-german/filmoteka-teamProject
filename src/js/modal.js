@@ -1,11 +1,8 @@
-const API_KEY = '83cba2c85d0df477852b094af9fbdddb';
+import API_KEY from './api-service';
 const axios = require('axios').default;
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
 import { getFromWatched, getFromQueue } from './local-storage';
-
 import { hidePreloader, showPreloader } from './preloader';
-
 const currentLocation = window.location.pathname;
 
 const refs = {
@@ -56,7 +53,10 @@ function onEscKeyPress(event) {
 }
 
 async function onClickSearchAndRenderById(event) {
-  if (event.target.nodeName === 'UL' || event.target.classList.value === 'slumb') {
+  if (
+    event.target.nodeName === 'UL' ||
+    event.target.classList.value === 'slumb'
+  ) {
     return;
   }
 
@@ -223,9 +223,9 @@ function createAndUpdateInstance(obj = {}) {
     document
       .querySelector('.modal-btn--watched')
       .addEventListener('click', removeMovieFromWatched);
-    Notify.success('Added to watch',{
-    timeout: 500,
-  });
+    Notify.success('Added to watch', {
+      timeout: 500,
+    });
     setTimeout(() => {
       hidePreloader();
     }, 200);
@@ -242,16 +242,15 @@ function createAndUpdateInstance(obj = {}) {
     document
       .querySelector('.modal-btn--queued')
       .addEventListener('click', removeMovieFromQueued);
-    Notify.success('Added to queue',{
-    timeout: 500,
-  });
+    Notify.success('Added to queue', {
+      timeout: 500,
+    });
     setTimeout(() => {
       hidePreloader();
     }, 200);
   }
 
   function removeMovieFromWatched() {
-    
     showPreloader();
     movie.removeFromStorage(movieId, 'watchedMovies');
     document
@@ -263,8 +262,8 @@ function createAndUpdateInstance(obj = {}) {
     document.querySelector('.modal-btn--watched').textContent =
       'add to Watched';
     Notify.success('Removed from watched', {
-    timeout: 500,
-  });
+      timeout: 500,
+    });
     setTimeout(() => {
       hidePreloader();
     }, 200);
@@ -275,7 +274,6 @@ function createAndUpdateInstance(obj = {}) {
   }
 
   function removeMovieFromQueued() {
-    
     showPreloader();
     movie.removeFromStorage(movieId, 'queuedMovies');
 
@@ -286,9 +284,9 @@ function createAndUpdateInstance(obj = {}) {
       .querySelector('.modal-btn--queued')
       .addEventListener('click', addToQueue);
     document.querySelector('.modal-btn--queued').textContent = 'add to queue';
-    Notify.success('Removed from queued',{
-    timeout: 500,
-  });
+    Notify.success('Removed from queued', {
+      timeout: 500,
+    });
     setTimeout(() => {
       hidePreloader();
     }, 200);

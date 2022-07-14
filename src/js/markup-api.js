@@ -1,5 +1,4 @@
 import ApiRequest from './genre-trand-request';
-
 import { refs } from './refs';
 
 const apiRequest = new ApiRequest();
@@ -13,7 +12,10 @@ export class MarkupApi {
 
   makeGalleryCardsMarkup(filmsData, dataGenres) {
     const currentLocation = window.location.pathname;
-    if (currentLocation === '/filmoteka-teamProject/index.html' || currentLocation === '/filmoteka-teamProject/') {
+    if (
+      currentLocation === '/filmoteka-teamProject/index.html' ||
+      currentLocation === '/filmoteka-teamProject/'
+    ) {
       this.isMainPage = true;
     } else {
       this.isMainPage = false;
