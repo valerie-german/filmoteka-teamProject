@@ -59,6 +59,7 @@ async function onClickSearchAndRenderById(event) {
   if (event.target.nodeName === 'UL' || event.target.classList.value === 'slumb') {
     return;
   }
+
   showPreloader();
   window.addEventListener('keydown', onEscKeyPress);
   refs.backdrop.classList.remove('backdrop--hidden');
@@ -222,7 +223,9 @@ function createAndUpdateInstance(obj = {}) {
     document
       .querySelector('.modal-btn--watched')
       .addEventListener('click', removeMovieFromWatched);
-    Notify.success('Added to watch');
+    Notify.success('Added to watch',{
+    timeout: 500,
+  });
     setTimeout(() => {
       hidePreloader();
     }, 200);
@@ -239,16 +242,16 @@ function createAndUpdateInstance(obj = {}) {
     document
       .querySelector('.modal-btn--queued')
       .addEventListener('click', removeMovieFromQueued);
-    Notify.success('Added to queue');
+    Notify.success('Added to queue',{
+    timeout: 500,
+  });
     setTimeout(() => {
       hidePreloader();
     }, 200);
   }
 
   function removeMovieFromWatched() {
-    if (currentLocation === '/filmoteka-teamProject/my-library.html') {
-      getFromWatched();
-    }
+    
     showPreloader();
     movie.removeFromStorage(movieId, 'watchedMovies');
     document
@@ -259,17 +262,20 @@ function createAndUpdateInstance(obj = {}) {
       .addEventListener('click', addToWatch);
     document.querySelector('.modal-btn--watched').textContent =
       'add to Watched';
-    Notify.success('Removed from watched');
+    Notify.success('Removed from watched', {
+    timeout: 500,
+  });
     setTimeout(() => {
       hidePreloader();
     }, 200);
     movie.removeItemFromGallery('gallery-home-list', movieId);
+    if (currentLocation === '/filmoteka-teamProject/my-library.html') {
+      getFromWatched();
+    }
   }
 
   function removeMovieFromQueued() {
-    if (currentLocation === '/filmoteka-teamProject/my-library.html') {
-      getFromQueue();
-    }
+    
     showPreloader();
     movie.removeFromStorage(movieId, 'queuedMovies');
 
@@ -280,11 +286,16 @@ function createAndUpdateInstance(obj = {}) {
       .querySelector('.modal-btn--queued')
       .addEventListener('click', addToQueue);
     document.querySelector('.modal-btn--queued').textContent = 'add to queue';
-    Notify.success('Removed from queued');
+    Notify.success('Removed from queued',{
+    timeout: 500,
+  });
     setTimeout(() => {
       hidePreloader();
     }, 200);
     movie.removeItemFromGallery('gallery-home-list', movieId);
+    if (currentLocation === '/filmoteka-teamProject/my-library.html') {
+      getFromQueue();
+    }
   }
 
   if (movie.inWatched(movieId)) {
