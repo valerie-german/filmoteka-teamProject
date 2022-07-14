@@ -202,16 +202,34 @@ li {
 
 .slumb {
   width: 100%;
-  height: 500px;
-  background-image: url('https://i.ibb.co/myf5Ynx/no-content-img-mob-1.jpg');
-  background-position: center;
+  height: 400px;
+  background-image: url('https://i.ibb.co/prNFnfs/There-is-nothing-here-yet-removebg.png');
+  background-position: bottom, 0%;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: fill;
   @media screen and (min-width: 768px) {
-    background-image: url('https://i.ibb.co/GWYydks/no-content.jpg');
+    background-size: contain;
     height: 470px;
   }
   @media screen and (min-width: 1280px) {
-    height: 810px;
+    height: 700px;
   }
+}
+.slumb>p{
+  font-size: 18px;
+  font-weight: 500;
+  padding: 60px;
+  @media screen and (min-width: 768px) {
+    width: 400px;
+    font-size: 26px;        
+    padding: 90px;
+   }
+  @media screen and (min-width: 1280px) {
+    width: 600px;
+    font-size: 40px;      
+    padding: 180px;
+   }
+   & span{
+    color: var(--secondary-color-title-card);
+   }
 }

@@ -78,7 +78,7 @@ function getFromQueue() {
 }
 
 function markupNoContent() {
-  refs.gallery.innerHTML = `<li class="slumb"></li>`;
+  refs.gallery.innerHTML = `<li class="slumb"><p>There is nothing here<span> yet...</span></p></li>`;
   document.querySelector('.gallery').classList.add('section-reset');
   document
     .querySelector('.gallery__pagination')
