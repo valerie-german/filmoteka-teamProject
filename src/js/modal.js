@@ -1,4 +1,4 @@
-import API_KEY from './api-service';
+import { API_KEY } from './api-service';
 const axios = require('axios').default;
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { getFromWatched, getFromQueue } from './local-storage';
