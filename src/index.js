@@ -11,6 +11,7 @@ import { defaultGalleyRender } from './js/default-gallery-render';
 const currentLocation = window.location.pathname;
 
 window.addEventListener('DOMContentLoaded', searchByTranding);
+
 function searchByTranding() {
   if (
     currentLocation === '/filmoteka-teamProject/index.html' ||

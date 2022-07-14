@@ -1,4 +1,4 @@
-import API_KEY from './api-service';
+import { API_KEY } from './api-service';
 const URL = 'https://api.themoviedb.org/3';
 
 export default class CreateApiService {

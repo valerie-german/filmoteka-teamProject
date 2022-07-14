@@ -1,4 +1,4 @@
-import API_KEY from './api-service';
+import { API_KEY } from './api-service';
 import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
