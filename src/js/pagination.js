@@ -1,11 +1,11 @@
 import { PaginApi } from './pagination-api';
-
 import ApiRequest from './genre-trand-request';
 import { MarkupApi } from './markup-api';
 
 const paginationApi = new PaginApi();
 const apiRequest = new ApiRequest();
 const markupApi = new MarkupApi();
+let data;
 
 export function pagiListeners(query) {
   paginationApi.getRefs();
